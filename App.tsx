@@ -6,7 +6,6 @@ import { Cocktails, IngredientType, Ingredients } from "./types/types";
 import data from "./data/datas.json";
 import Routes from "./src/routes";
 import { collection, getDocs } from "firebase/firestore";
-import db from "./src/firebase";
 import { updateDoc } from "./src/database/set";
 import { getDbDocs } from "./src/database/read";
 
