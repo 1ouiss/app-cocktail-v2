@@ -1,15 +1,16 @@
 import { Text } from "react-native";
 import { NavigationProps } from "../../../types/types";
 import PageLayout from "../../components/PageLayout/PageLayout";
+import Navigation from "../../components/Navigation";
 
-const Favorites: React.FC<NavigationProps> = ({ navigation }) => {
+const User: React.FC<NavigationProps> = ({ navigation }) => {
   return (
     <PageLayout navigation={navigation}>
       <>
-        <Text>Favorites</Text>
+        <Text>User</Text>
       </>
     </PageLayout>
   );
 };
 
-export default Favorites;
+export default User;

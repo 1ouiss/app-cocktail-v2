@@ -30,10 +30,13 @@ const Navigation: React.FC<NavigationProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Button title="home" onPress={() => navigation.navigate("Home")} />
+      <Button title="stock" onPress={() => navigation.navigate("Stock")} />
+      <Button title="New" onPress={() => navigation.navigate("New")} />
       <Button
         title="favorites"
         onPress={() => navigation.navigate("Favorites")}
       />
+      <Button title="user" onPress={() => navigation.navigate("User")} />
     </View>
   );
 };

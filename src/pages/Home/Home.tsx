@@ -1,23 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
 import Navigation from "../../components/Navigation";
 import { NavigationProps } from "../../../types/types";
+import PageLayout from "../../components/PageLayout/PageLayout";
 
 const Home: React.FC<NavigationProps> = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <Text>Home</Text>
-      <Navigation navigation={navigation} />
-    </View>
+    <PageLayout navigation={navigation}>
+      <>
+        <Text>Home</Text>
+      </>
+    </PageLayout>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export default Home;
