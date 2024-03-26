@@ -1,0 +1,130 @@
+{
+    "ingredients": [
+        {
+            "name": "Vodka",
+            "quantity": "2 oz",
+            "id": "vodka"
+        },
+        {
+            "name": "Gin",
+            "quantity": "1 oz",
+            "id": "gin"
+        },
+        {
+            "name": "Rum",
+            "quantity": "1 oz",
+            "id": "rum"
+        },
+        {
+            "name": "Tequila",
+            "quantity": "1 oz",
+            "id": "tequila"
+        },
+        {
+            "name": "Triple Sec",
+            "quantity": "0.5 oz",
+            "id": "triple_sec"
+        },
+        {
+            "name": "Simple Syrup",
+            "quantity": "0.5 oz",
+            "id": "simple_syrup"
+        },
+        {
+            "name": "Club Soda",
+            "quantity": "2 oz",
+            "id": "club_soda"
+        },
+        {
+            "name": "Orange Juice",
+            "quantity": "2 oz",
+            "id": "orange_juice"
+        },
+        {
+            "name": "Cranberry Juice",
+            "quantity": "2 oz",
+            "id": "cranberry_juice"
+        },
+        {
+            "name": "Apple Juice",
+            "quantity": "2 oz",
+            "id": "apple_juice"
+        },
+        {
+            "name": "Pineapple Juice",
+            "quantity": "2 oz",
+            "id": "pineapple_juice"
+        },
+        {
+            "name": "Mango Juice",
+            "quantity": "2 oz",
+            "id": "mango_juice"
+        },
+        {
+            "name": "Strawberry Juice",
+            "quantity": "2 oz",
+            "id": "strawberry_juice"
+        },
+        {
+            "name": "Watermelon Juice",
+            "quantity": "2 oz",
+            "id": "watermelon_juice"
+        },
+        {
+            "name": "Grapefruit Juice",
+            "quantity": "2 oz",
+            "id": "grapefruit_juice"
+        },
+        {
+            "name": "Lemon Juice",
+            "quantity": "2 oz",
+            "id": "lemon_juice"
+        },
+        {
+            "name": "Lime Juice",
+            "quantity": "2 oz",
+            "id": "lime_juice"
+        }
+    ],
+    "cocktails" : [
+        {
+            "id": "long_island_iced_tea",
+            "name": "Long Island Iced Tea",
+            "description": "A strong cocktail made with a variety of spirits and a splash of cola",
+            "ingredients": [
+                {
+                    "id": "vodka",
+                    "quantity": "0.5 oz"
+                },
+                {
+                    "id": "gin",
+                    "quantity": "0.5 oz"
+                },
+                {
+                    "id": "rum",
+                    "quantity": "0.5 oz"
+                },
+                {
+                    "id": "tequila",
+                    "quantity": "0.5 oz"
+                },
+                {
+                    "id": "triple_sec",
+                    "quantity": "0.5 oz"
+                },
+                {
+                    "id": "simple_syrup",
+                    "quantity": "0.5 oz"
+                },
+                {
+                    "id": "club_soda",
+                    "quantity": "1 oz"
+                },
+                {
+                    "id": "lemon_juice",
+                    "quantity": "0.5 oz"
+                }
+            ]
+        }
+    ]
+}
