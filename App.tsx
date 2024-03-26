@@ -7,7 +7,8 @@ import data from "./data/datas.json";
 import Routes from "./src/routes";
 import { collection, getDocs } from "firebase/firestore";
 import db from "./src/firebase";
-
+import { updateDoc } from "./src/database/set";
+import { getDbDocs } from "./src/database/read";
 
 // export default function App() {
 //   const [selectedIngredient, setSelectedIngredient] = useState<Ingredients>([]);
@@ -79,23 +80,18 @@ import db from "./src/firebase";
 //   );import { collection, getDocs } from "firebase/firestore";
 
 export default function App() {
-   useEffect(() => {
-    getCocktails()
+  useEffect(() => {
+    getCocktails();
   }, []);
 
   const getCocktails = async () => {
-    try {
-      const cocktails = await getDocs(collection(db, "cocktails"));
-      if (cocktails.empty) return [];
-      const data = cocktails.docs.map((doc) => doc.data());
-      console.log(data);
-    } catch (error) {
-      throw error;
-    }
+    const cocktails = await getDbDocs({
+      collectionId: "cocktails",
+    });
+    console.log(cocktails);
   };
   return <Routes />;
 }
-
 
 const styles = StyleSheet.create({
   container: {
