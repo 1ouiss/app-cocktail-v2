@@ -1,11 +1,7 @@
-import { NavigationProp } from "@react-navigation/native";
 import { Text } from "react-native";
+import { NavigationProps } from "../../../types/types";
 
-type Props = {
-  navigation: NavigationProp<any>;
-};
-
-const Favorites: React.FC<Props> = ({ navigation }) => {
+const Favorites: React.FC<NavigationProps> = ({ navigation }) => {
   return (
     <>
       <Text>Favorites</Text>

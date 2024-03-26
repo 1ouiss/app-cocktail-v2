@@ -1,12 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 import Navigation from "../../components/Navigation";
-import { NavigationProp } from "@react-navigation/native";
+import { NavigationProps } from "../../../types/types";
 
-type Props = {
-  navigation: NavigationProp<any>;
-};
-
-const Home: React.FC<Props> = ({ navigation }) => {
+const Home: React.FC<NavigationProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>Home</Text>
