@@ -8,7 +8,13 @@ const Stack = createNativeStackNavigator();
 const Routes = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerShown: false,
+          animation: "none",
+        }}
+      >
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Favorites" component={Favorites} />
       </Stack.Navigator>
