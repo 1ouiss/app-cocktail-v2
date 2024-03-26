@@ -1,10 +1,13 @@
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Button, Chip, PaperProvider } from "react-native-paper";
 import { Cocktails, IngredientType, Ingredients } from "./types/types";
 import data from "./data/datas.json";
 import Routes from "./src/routes";
+import { collection, getDocs } from "firebase/firestore";
+import db from "./src/firebase";
+
 
 // export default function App() {
 //   const [selectedIngredient, setSelectedIngredient] = useState<Ingredients>([]);
@@ -73,12 +76,26 @@ import Routes from "./src/routes";
 //           ))}
 //       </View>
 //     </PaperProvider>
-//   );
-// }
+//   );import { collection, getDocs } from "firebase/firestore";
 
 export default function App() {
+   useEffect(() => {
+    getCocktails()
+  }, []);
+
+  const getCocktails = async () => {
+    try {
+      const cocktails = await getDocs(collection(db, "cocktails"));
+      if (cocktails.empty) return [];
+      const data = cocktails.docs.map((doc) => doc.data());
+      console.log(data);
+    } catch (error) {
+      throw error;
+    }
+  };
   return <Routes />;
 }
+
 
 const styles = StyleSheet.create({
   container: {
