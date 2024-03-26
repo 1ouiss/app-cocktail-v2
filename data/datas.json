@@ -158,6 +158,97 @@
                     "quantity": 1
                 }
             ]
+        },
+        {
+            "id": "cosmopolitan",
+            "name": "Cosmopolitan",
+            "description": "A classic vodka-based cocktail with cranberry juice and lime juice",
+            "ingredients": [
+                {
+                    "id": "vodka",
+                    "quantity": 1.5
+                },
+                {
+                    "id": "cranberry_juice",
+                    "quantity": 1
+                },
+                {
+                    "id": "lime_juice",
+                    "quantity": 0.5
+                },
+                {
+                    "id": "triple_sec",
+                    "quantity": 0.5
+                }
+            ]
+        },
+        {
+            "id": "daiquiri",
+            "name": "Daiquiri",
+            "description": "A classic rum-based cocktail with lime juice and simple syrup",
+            "ingredients": [
+                {
+                    "id": "rum",
+                    "quantity": 2
+                },
+                {
+                    "id": "lime_juice",
+                    "quantity": 1
+                },
+                {
+                    "id": "simple_syrup",
+                    "quantity": 0.75
+                }
+            ]
+        },
+        {
+            "id": "martini",
+            "name": "Martini",
+            "description": "A sophisticated cocktail made with gin and dry vermouth",
+            "ingredients": [
+                {
+                    "id": "gin",
+                    "quantity": 2.5
+                },
+                {
+                    "id": "dry_vermouth",
+                    "quantity": 0.5
+                }
+            ]
+        },
+        {
+            "id": "mimosa",
+            "name": "Mimosa",
+            "description": "A refreshing cocktail made with champagne and orange juice",
+            "ingredients": [
+                {
+                    "id": "champagne",
+                    "quantity": 2
+                },
+                {
+                    "id": "orange_juice",
+                    "quantity": 1
+                }
+            ]
+        },
+        {
+            "id": "pina_colada",
+            "name": "Pina Colada",
+            "description": "A tropical cocktail made with rum, pineapple juice, and coconut cream",
+            "ingredients": [
+                {
+                    "id": "rum",
+                    "quantity": 2
+                },
+                {
+                    "id": "pineapple_juice",
+                    "quantity": 3
+                },
+                {
+                    "id": "coconut_cream",
+                    "quantity": 1
+                }
+            ]
         }
     ]
 }
