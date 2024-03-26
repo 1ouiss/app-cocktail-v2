@@ -1,3 +1,5 @@
+import { NavigationProp } from "@react-navigation/native";
+
 type IngredientType = {
   id: string;
   name: string;
@@ -17,4 +19,15 @@ type Ingredients = IngredientType[];
 
 type Favorites = CocktailType[];
 
-export { Cocktails, Ingredients, Favorites, CocktailType, IngredientType };
+type NavigationProps = {
+  navigation: NavigationProp<any>;
+};
+
+export {
+  Cocktails,
+  Ingredients,
+  Favorites,
+  CocktailType,
+  IngredientType,
+  NavigationProps,
+};

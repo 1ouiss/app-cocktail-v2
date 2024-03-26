@@ -1,9 +1,5 @@
-import { NavigationProp } from "@react-navigation/native";
 import { Button, StyleSheet, View } from "react-native";
-
-type Props = {
-  navigation: NavigationProp<any>;
-};
+import { NavigationProps } from "../../../types/types";
 
 const styles = StyleSheet.create({
   container: {
@@ -22,7 +18,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Navigation: React.FC<Props> = ({ navigation }) => {
+const Navigation: React.FC<NavigationProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Button title="home" onPress={() => navigation.navigate("Home")} />
