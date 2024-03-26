@@ -1,5 +1,7 @@
 import { Button, StyleSheet, View } from "react-native";
 import { NavigationProps } from "../../../types/types";
+import { useEffect } from "react";
+import { useRoute } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
   container: {
@@ -19,6 +21,12 @@ const styles = StyleSheet.create({
 });
 
 const Navigation: React.FC<NavigationProps> = ({ navigation }) => {
+  const route = useRoute();
+  useEffect(() => {
+    console.log("Navigation component mounted");
+    console.log(navigation.isFocused());
+    console.log(route);
+  }, []);
   return (
     <View style={styles.container}>
       <Button title="home" onPress={() => navigation.navigate("Home")} />

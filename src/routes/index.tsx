@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../pages/Home";
-import Favorites from "../pages/Favorites/Favorites";
+import Favorites from "../pages/Favorites";
 
 const Stack = createNativeStackNavigator();
 
