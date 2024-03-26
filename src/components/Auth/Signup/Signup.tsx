@@ -68,13 +68,6 @@ const Signup: FC<{
       />
       <TextInput
         style={styles.input}
-        label="Password"
-        mode="outlined"
-        value={user.password}
-        onChangeText={(e) => handleChange(e, "password")}
-      />
-      <TextInput
-        style={styles.input}
         label="FirstName"
         mode="outlined"
         value={user.firstName}
@@ -86,6 +79,14 @@ const Signup: FC<{
         mode="outlined"
         value={user.lastName}
         onChangeText={(e) => handleChange(e, "lastName")}
+      />
+      <TextInput
+        style={styles.input}
+        label="Password"
+        mode="outlined"
+        value={user.password}
+        onChangeText={(e) => handleChange(e, "password")}
+        secureTextEntry
       />
       <Button mode="contained" onPress={handleSubmit}>
         S'inscrire
