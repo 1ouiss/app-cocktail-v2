@@ -1,15 +1,15 @@
 import { Text } from "react-native";
-import { NavigationProps } from "../../../types/types";
 import PageLayout from "../../components/PageLayout/PageLayout";
+import { NavigationProps } from "../../../types/types";
 
-const Favorites: React.FC<NavigationProps> = ({ navigation }) => {
+const Stock: React.FC<NavigationProps> = ({ navigation }) => {
   return (
     <PageLayout navigation={navigation}>
       <>
-        <Text>Favorites</Text>
+        <Text>Stock</Text>
       </>
     </PageLayout>
   );
 };
 
-export default Favorites;
+export default Stock;
