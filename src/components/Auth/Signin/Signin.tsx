@@ -12,6 +12,7 @@ import { NavigationProps } from "../../../../types/types";
 import { useState, FC } from "react";
 import { auth } from "../../../firebase";
 import { NavigationProp } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Signin: FC<{
   setIsSignup: React.Dispatch<React.SetStateAction<boolean>>;
@@ -31,6 +32,15 @@ const Signin: FC<{
     });
   };
 
+  const storeData = async (value:string) => {
+    try {
+        await AsyncStorage.setItem('user', value);
+        console.log(value);
+    } catch (e) {
+        console.log(e);
+    }
+  };
+
   const handleSubmit = async () => {
     let response = {};
     let userConected = null;
@@ -38,7 +48,7 @@ const Signin: FC<{
       await signInWithEmailAndPassword(auth, user.email, user.password).then(
         async (userCredential: UserCredential) => {
           userConected = userCredential.user;
-          console.log(userConected.uid);
+          await storeData(userConected.uid);
         }
       );
     } catch (err:any) {

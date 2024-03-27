@@ -13,6 +13,13 @@ type CocktailType = {
   ingredients: Omit<IngredientType, "name">[];
 };
 
+type User = {
+  uid: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+};
+
 type Cocktails = CocktailType[];
 
 type Ingredients = IngredientType[];
@@ -30,4 +37,5 @@ export {
   CocktailType,
   IngredientType,
   NavigationProps,
+  User,
 };
