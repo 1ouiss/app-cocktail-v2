@@ -1,6 +1,6 @@
 import { Text } from "react-native-paper";
 import { CocktailType } from "../../../types/types";
-import { View } from "react-native";
+import { ImageBackground, View } from "react-native";
 import { useContext } from "react";
 import { DatabaseContext } from "../../context/DatabaseContext";
 
@@ -19,14 +19,13 @@ const CocktailCard = ({ cocktail }: { cocktail: CocktailType }) => {
         gap: 10,
       }}
     >
-      <View
-        style={{
-          width: "100%",
-          height: 200,
-          backgroundColor: "red",
-          borderRadius: 16,
-        }}
-      />
+      <View style={{ width: 100, height: 100, backgroundColor: "red" }}>
+        <ImageBackground
+          source={{ uri: cocktail.image }}
+          style={{ width: "100%", height: "100%" }}
+          resizeMode="cover"
+        />
+      </View>
       <View style={{ flex: 1 }}>
         <Text variant="headlineSmall">{cocktail.name}</Text>
         <Text variant="bodyMedium">{cocktail.description}</Text>
