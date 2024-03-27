@@ -1,8 +1,10 @@
 import { FC, createContext, useEffect, useState } from "react";
 import { getDbDoc, getDbDocs } from "../database/read";
 import { Cocktails, Ingredients, User } from "../../types/types";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../firebase";
 
 type ContextType = {
   children: JSX.Element | JSX.Element[];
@@ -31,7 +33,7 @@ const DatabaseContext = createContext<{
 const DatabaseContextProvider: FC<ContextType> = ({ children }) => {
   const [cocktails, setCocktails] = useState<Cocktails>([]);
   const [ingredients, setIngredients] = useState<Ingredients>([]);
-  const [user , setUser] = useState<User>();
+  const [user, setUser] = useState<User>();
   const [isSigned, setIsSigned] = useState(false);
 
   const fetchDatas = async () => {
@@ -44,20 +46,28 @@ const DatabaseContextProvider: FC<ContextType> = ({ children }) => {
 
   const getUser = async () => {
     try {
-      const value = await AsyncStorage.getItem('user');
-      if (value !== null) {
-      const userSnapshot = await getDbDoc({ collectionId: "users", docId: value })
-      userSnapshot && setUser(userSnapshot as User);
-      }
+      const value = await AsyncStorage.getItem("user");
+      if (!value) setIsSigned(false);
+      const docRef = doc(db, "users", value as string);
+      new Promise((resolve, reject) => {
+        onSnapshot(docRef, (doc) => {
+          if (doc.exists() === false) {
+            reject(false);
+            return false;
+          }
+          setUser && setUser(doc.data() as User);
+          resolve(doc.data() as User);
+        });
+      });
     } catch (e) {
-      console.log(e);      
+      console.log(e);
     }
-  }
+  };
 
   useEffect(() => {
     fetchDatas();
   }, []);
-  
+
   useEffect(() => {
     getUser();
   }, [isSigned]);

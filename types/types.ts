@@ -19,6 +19,7 @@ type User = {
   email: string;
   firstName: string;
   lastName: string;
+  stock: IngredientType[];
 };
 
 type Cocktails = CocktailType[];
