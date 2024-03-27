@@ -14,7 +14,7 @@ type CocktailType = {
 };
 
 type User = {
-  uid: string;
+  id: string;
   email: string;
   firstName: string;
   lastName: string;
