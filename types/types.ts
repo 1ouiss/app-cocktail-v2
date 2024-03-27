@@ -3,7 +3,7 @@ import { NavigationProp } from "@react-navigation/native";
 type IngredientType = {
   id: string;
   name: string;
-  quantity: string;
+  quantity?: string;
 };
 
 type CocktailType = {
@@ -12,7 +12,7 @@ type CocktailType = {
   description: string;
   ingredients: IngredientType[];
   user?: string;
-  image: string;
+  image?: string;
 };
 
 type User = {
