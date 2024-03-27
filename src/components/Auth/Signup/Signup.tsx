@@ -16,8 +16,6 @@ const Signup: FC<{
   setIsSignup: React.Dispatch<React.SetStateAction<boolean>>;
   navigation: NavigationProp<any>;
 }> = ({ setIsSignup, navigation }) => {
-    console.log(AsyncStorage);
-    
   const [user, setUser] = useState({
     id: "",
     email: "",
