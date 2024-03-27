@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: "100%",
     paddingTop: 100,
+    position: "relative",
   },
   header: {
     display: "flex",
@@ -45,6 +46,7 @@ const styles = StyleSheet.create({
     paddingTop: 60,
     position: "absolute",
   },
+  
 });
 
 export default PageLayout;
