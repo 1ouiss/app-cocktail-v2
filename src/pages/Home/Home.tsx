@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Cocktails, NavigationProps } from "../../../types/types";
 import PageLayout from "../../components/PageLayout/PageLayout";
 import { TextInput, Title } from "react-native-paper";
@@ -55,7 +55,16 @@ const Home: React.FC<NavigationProps> = ({ navigation }) => {
         </View>
         {/* <CreateDataInDb /> */}
         {filterableCocktails.map((cocktail) => (
-          <CocktailCard cocktail={cocktail} key={cocktail.id} />
+          <Pressable
+            onPress={() =>
+              navigation.navigate("cocktail", {
+                cocktail,
+              })
+            }
+            key={cocktail.id}
+          >
+            <CocktailCard cocktail={cocktail} />
+          </Pressable>
         ))}
       </>
     </PageLayout>
