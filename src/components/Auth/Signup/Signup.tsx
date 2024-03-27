@@ -61,6 +61,7 @@ const Signup: FC<{
           firstName: user.firstName,
           lastName: user.lastName,
           stock: [],
+          favorites: [],
         },
         collectionId: "users",
         docId: newUser.uid,
