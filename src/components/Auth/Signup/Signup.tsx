@@ -7,7 +7,10 @@ import { updateDoc } from "../../../database/set";
 import { auth } from "../../../firebase";
 import { useState, FC } from "react";
 import { NavigationProp } from "@react-navigation/native";
-import { FirebaseError } from "firebase/app";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useContext } from "react";
+import { DatabaseContext } from "../../../context/DatabaseContext";
+
 
 const Signup: FC<{
   setIsSignup: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,6 +23,7 @@ const Signup: FC<{
     firstName: "",
     lastName: "",
   });
+  const {setIsSigned} = useContext(DatabaseContext);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -30,6 +34,14 @@ const Signup: FC<{
     });
   };
 
+  const storeData = async (value:string) => {
+    try {
+        await AsyncStorage.setItem('user', value);
+        console.log(value);
+    } catch (e) {
+        console.log(e);
+    }
+  };
   const handleSubmit = async () => {
     try {
       // Créer un nouvel utilisateur avec l'email et le mot de passe
@@ -41,6 +53,8 @@ const Signup: FC<{
       console.log(userCredential);
       const newUser = userCredential.user;
 
+      await storeData(newUser.uid);
+
       await updateDoc({
         newDatas: {
           id: newUser.uid,
@@ -51,6 +65,7 @@ const Signup: FC<{
         collectionId: "users",
         docId: newUser.uid,
       });
+      setIsSigned(true);
     } catch (err : any) {
         switch (err.code) {
             case "auth/email-already-in-use":
