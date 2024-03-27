@@ -41,9 +41,17 @@ const Signin: FC<{
           console.log(userConected.uid);
         }
       );
-    } catch (err) {
-      setErrorMessage("Une erreur inattendue s'est produite.");
-    }
+    } catch (err:any) {
+        console.log(err.code);
+        
+        switch (err.code) {
+            case "auth/invalid-credential":
+                setErrorMessage("Votre email ou mot de passe est incorrect.");
+                setError(true);
+                break;
+            default:
+            }   
+        }
   };
 
   return (
@@ -63,10 +71,10 @@ const Signin: FC<{
         onChangeText={(e) => handleChange(e, "password")}
         secureTextEntry
       />
+        {error && (<Text>Erreur: {errorMessage}</Text>)}      
       <Button mode="contained" onPress={handleSubmit}>
         Se connecter
       </Button>
-      {error && <Text>{errorMessage}</Text>}
       <Text variant="bodyMedium">
         Vous n'avez pas de compte ?
         <Text onPress={() => setIsSignup(false)}>Inscrivez-vous</Text>

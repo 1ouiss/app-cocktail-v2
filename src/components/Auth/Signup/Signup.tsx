@@ -7,6 +7,7 @@ import { updateDoc } from "../../../database/set";
 import { auth } from "../../../firebase";
 import { useState, FC } from "react";
 import { NavigationProp } from "@react-navigation/native";
+import { FirebaseError } from "firebase/app";
 
 const Signup: FC<{
   setIsSignup: React.Dispatch<React.SetStateAction<boolean>>;
@@ -50,10 +51,19 @@ const Signup: FC<{
         collectionId: "users",
         docId: newUser.uid,
       });
-    } catch (err) {
-      console.log(err);
-
-      setErrorMessage("Une erreur inattendue s'est produite.");
+    } catch (err : any) {
+        switch (err.code) {
+            case "auth/email-already-in-use":
+                setErrorMessage("Cet email est déjà utilisé.");
+                setError(true);
+                break;
+            case "auth/weak-password":
+                setErrorMessage("Le mot de passe doit contenir au moins 6 caractères.");
+                setError(true);
+                break;
+            default:
+            }
+        console.log(err);      
     }
   };
 
@@ -66,6 +76,7 @@ const Signup: FC<{
         value={user.email}
         onChangeText={(e) => handleChange(e, "email")}
       />
+        {error && errorMessage.includes("email") && (<Text>Erreur: {errorMessage}</Text>)}
       <TextInput
         style={styles.input}
         label="FirstName"
@@ -88,10 +99,10 @@ const Signup: FC<{
         onChangeText={(e) => handleChange(e, "password")}
         secureTextEntry
       />
+        {error && errorMessage.includes("mot de passe") && (<Text>Erreur: {errorMessage}</Text>)}      
       <Button mode="contained" onPress={handleSubmit}>
         S'inscrire
       </Button>
-      {error && <Text>{errorMessage}</Text>}
       <Text variant="bodyMedium">
         Déjà un compte ?{" "}
         <Text onPress={() => setIsSignup(true)}>Se connecter</Text>
