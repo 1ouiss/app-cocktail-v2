@@ -37,6 +37,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigation }) => {
         onPress={() => navigation.navigate("Favorites")}
       />
       <Button title="user" onPress={() => navigation.navigate("User")} />
+      <Button title="login" onPress={() => navigation.navigate("Login")} />
     </View>
   );
 };
