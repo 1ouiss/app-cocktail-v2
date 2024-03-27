@@ -66,6 +66,7 @@ const DatabaseContextProvider: FC<ContextType> = ({ children }) => {
 
   useEffect(() => {
     fetchDatas();
+    console.log("user", user);
   }, []);
 
   useEffect(() => {

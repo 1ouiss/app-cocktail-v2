@@ -1,6 +1,12 @@
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import PageLayout from "../../PageLayout/PageLayout";
-import { Button, Text, TextInput } from "react-native-paper";
+import {
+  ActivityIndicator,
+  Button,
+  MD2Colors,
+  Text,
+  TextInput,
+} from "react-native-paper";
 import * as React from "react";
 import { StyleSheet } from "react-native";
 import { updateDoc } from "../../../database/set";
@@ -25,6 +31,7 @@ const Signup: FC<{
   const { setIsSigned } = useContext(DatabaseContext);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (text: string, key: string) => {
     setUser({
@@ -43,7 +50,7 @@ const Signup: FC<{
   };
   const handleSubmit = async () => {
     try {
-      // Créer un nouvel utilisateur avec l'email et le mot de passe
+      setLoading(true);
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         user.email,
@@ -68,6 +75,7 @@ const Signup: FC<{
       });
       setIsSigned(true);
     } catch (err: any) {
+      setLoading(false);
       switch (err.code) {
         case "auth/email-already-in-use":
           setErrorMessage("Cet email est déjà utilisé.");
@@ -127,8 +135,15 @@ const Signup: FC<{
       </Button>
       <Text variant="bodyMedium">
         Déjà un compte ?{" "}
-        <Text onPress={() => setIsSignup(true)}>Se connecter</Text>
+        <Text onPress={() => setIsSignup(false)}>Se connecter</Text>
       </Text>
+      {loading && (
+        <ActivityIndicator
+          size={"large"}
+          animating={true}
+          color={MD2Colors.red800}
+        />
+      )}
     </>
   );
 };
