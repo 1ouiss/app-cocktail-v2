@@ -5,6 +5,7 @@ import Favorites from "../pages/Favorites";
 import New from "../pages/New";
 import Stock from "../pages/Stock";
 import User from "../pages/User";
+import Login from "../pages/Login";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,7 @@ const Routes = () => {
         <Stack.Screen name="new" component={New} />
         <Stack.Screen name="favorites" component={Favorites} />
         <Stack.Screen name="user" component={User} />
+        <Stack.Screen name="login" component={Login} />
       </Stack.Navigator>
     </NavigationContainer>
   );
