@@ -1,9 +1,15 @@
 import { FC, createContext, useEffect, useState } from "react";
 import { getDbDoc, getDbDocs } from "../database/read";
-import { Cocktails, Ingredients, User } from "../../types/types";
+import {
+  CocktailType,
+  Cocktails,
+  IngredientType,
+  Ingredients,
+  User,
+} from "../../types/types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
-import { doc, onSnapshot } from "firebase/firestore";
+import { collection, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 
 type ContextType = {
@@ -37,10 +43,27 @@ const DatabaseContextProvider: FC<ContextType> = ({ children }) => {
   const [isSigned, setIsSigned] = useState(false);
 
   const fetchDatas = async () => {
-    ["ingredients", "cocktails"].map(async (collectionId) => {
-      const datas = await getDbDocs({ collectionId });
-      if (collectionId === "ingredients") setIngredients(datas);
-      else setCocktails(datas);
+    const collectionIngredientsRef = collection(db, "ingredients");
+    const collectionCocktailsRef = collection(db, "cocktails");
+
+    new Promise((resolve, reject) => {
+      onSnapshot(collectionIngredientsRef, (snapshot) => {
+        const ingredients: Ingredients = [];
+        snapshot.forEach((doc) => {
+          ingredients.push(doc.data() as IngredientType);
+        });
+        setIngredients(ingredients);
+      });
+    });
+
+    new Promise((resolve, reject) => {
+      onSnapshot(collectionCocktailsRef, (snapshot) => {
+        const cocktails: Cocktails = [];
+        snapshot.forEach((doc) => {
+          cocktails.push(doc.data() as CocktailType);
+        });
+        setCocktails(cocktails);
+      });
     });
   };
 

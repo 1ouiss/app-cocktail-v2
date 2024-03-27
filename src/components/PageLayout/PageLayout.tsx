@@ -33,7 +33,7 @@ const PageLayout = ({ children, navigation }: PageLayoutProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
+    backgroundColor: "#f0f0f0",
     alignItems: "center",
     height: "100%",
     paddingTop: 100,
@@ -45,11 +45,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     padding: 10,
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "#fff",
     paddingTop: 60,
     position: "absolute",
+    borderBottomLeftRadius: 32,
+    borderBottomRightRadius: 32,
   },
-  
 });
 
 export default PageLayout;

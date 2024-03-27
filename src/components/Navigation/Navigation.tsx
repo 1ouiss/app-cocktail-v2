@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "row",
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "#fff",
     alignItems: "center",
     paddingBottom: 30,
     paddingTop: 20,
@@ -24,16 +24,13 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: "100%",
     justifyContent: "space-around",
+    borderTopLeftRadius: 32,
+    borderTopRightRadius: 32,
   },
 });
 
 const Navigation: React.FC<NavigationProps> = ({ navigation }) => {
   const route = useRoute();
-  useEffect(() => {
-    console.log("Navigation component mounted");
-    console.log(navigation.isFocused());
-    console.log(route);
-  }, []);
   return (
     <View style={styles.container}>
       <Pressable onPress={() => navigation.navigate("home")}>

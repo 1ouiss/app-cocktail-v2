@@ -1,12 +1,12 @@
-import { ScrollView, Text, View } from "react-native";
+import { Pressable, ScrollView, View } from "react-native";
 import PageLayout from "../../components/PageLayout/PageLayout";
 import {
   CocktailType,
   IngredientType,
   NavigationProps,
 } from "../../../types/types";
-import { Button, Chip, Modal, TextInput } from "react-native-paper";
-import { useContext, useState } from "react";
+import { Button, Chip, Modal, Text, TextInput } from "react-native-paper";
+import { useContext, useEffect, useState } from "react";
 import { updateDoc } from "../../database/set";
 import { DatabaseContext } from "../../context/DatabaseContext";
 
@@ -18,10 +18,15 @@ const New: React.FC<NavigationProps> = ({ navigation }) => {
     description: "",
   });
 
-  const [showModal, setShowModal] = useState(false);
+  const [availableIngredients, setAvailableIngredients] = useState<
+    IngredientType[]
+  >([]);
+
+  const [newIngredient, setNewIngredient] = useState<string>("");
+
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   const handleAddCocktail = async () => {
-    console.log(cocktail);
     const newCocktail = {
       id: cocktail.name.toLocaleLowerCase().split(" ").join("_"),
       ...cocktail,
@@ -33,9 +38,12 @@ const New: React.FC<NavigationProps> = ({ navigation }) => {
       docId: newCocktail.id,
       newDatas: newCocktail,
     });
+
+    setModalVisible(true);
   };
 
   const handleAddIngredient = (ingredient: IngredientType) => {
+    setNewIngredient("");
     if (cocktail.ingredients.includes(ingredient)) {
       setCocktail({
         ...cocktail,
@@ -48,6 +56,36 @@ const New: React.FC<NavigationProps> = ({ navigation }) => {
       ingredients: [...cocktail.ingredients, ingredient],
     });
   };
+
+  const handleAvailableIngredientsChange = (e: string) => {
+    if (e === "") {
+      setAvailableIngredients([]);
+      return;
+    }
+    const filteredIngredients = ingredients.filter((ingredient) =>
+      ingredient.name.toLowerCase().includes(e.toLowerCase())
+    );
+    setAvailableIngredients(filteredIngredients);
+  };
+
+  const handleCreateNewIngredient = async () => {
+    const ingredientToCreate: IngredientType = {
+      id: newIngredient.toLocaleLowerCase().split(" ").join("_"),
+      name: newIngredient,
+    };
+    await updateDoc({
+      collectionId: "ingredients",
+      docId: ingredientToCreate.id,
+      newDatas: ingredientToCreate,
+    });
+    setNewIngredient("");
+
+    setCocktail({
+      ...cocktail,
+      ingredients: [...cocktail.ingredients, ingredientToCreate],
+    });
+  };
+
   return (
     <PageLayout navigation={navigation}>
       <View
@@ -66,13 +104,69 @@ const New: React.FC<NavigationProps> = ({ navigation }) => {
           }}
         />
         <TextInput
-          label="Description de votre cocktail"
+          label="Ingrédients de votre cocktail"
           mode="outlined"
-          value={cocktail.description}
+          value={newIngredient}
           onChangeText={(e) => {
-            setCocktail({ ...cocktail, description: e });
+            setNewIngredient(e);
+            handleAvailableIngredientsChange(e);
           }}
         />
+
+        {newIngredient && (
+          <View
+            style={{
+              position: "absolute",
+              top: 115,
+              left: 0,
+              zIndex: 1000,
+              margin: 10,
+              backgroundColor: "white",
+              width: "100%",
+            }}
+          >
+            <ScrollView
+              style={{
+                maxHeight: 200,
+              }}
+            >
+              {availableIngredients.length > 0 ? (
+                availableIngredients.map((ingredient) => (
+                  <Pressable
+                    key={ingredient.id}
+                    onPress={() => handleAddIngredient(ingredient)}
+                  >
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        padding: 10,
+                      }}
+                    >
+                      <Text>{ingredient.name}</Text>
+                    </View>
+                  </Pressable>
+                ))
+              ) : (
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    padding: 10,
+                  }}
+                >
+                  <Button
+                    onPress={() => {
+                      handleCreateNewIngredient();
+                    }}
+                  >
+                    Aucun ingrédient trouvé, appuyez pour ajouter
+                  </Button>
+                </View>
+              )}
+            </ScrollView>
+          </View>
+        )}
         {cocktail.ingredients.length > 0 && (
           <View
             style={{
@@ -86,51 +180,88 @@ const New: React.FC<NavigationProps> = ({ navigation }) => {
               <Chip
                 key={ingredient.id}
                 onPress={() => handleAddIngredient(ingredient)}
+                icon="close"
+                theme={{
+                  colors: {
+                    primary: "#180828",
+                  },
+                }}
               >
                 <Text>{ingredient.name}</Text>
               </Chip>
             ))}
           </View>
         )}
-        <View>
-          <Button onPress={() => setShowModal(true)} mode="contained">
-            Ajouter un ingrédient
-          </Button>
-        </View>
+        <TextInput
+          label="Description de votre cocktail"
+          mode="outlined"
+          value={cocktail.description}
+          onChangeText={(e) => {
+            setCocktail({ ...cocktail, description: e });
+          }}
+        />
 
-        <Button onPress={() => handleAddCocktail()}>
-          Ajouter mon cocktail
+        <Button
+          onPress={() => handleAddCocktail()}
+          style={{
+            marginTop: 10,
+          }}
+          mode="contained"
+        >
+          Créer mon cocktail
         </Button>
         <Modal
-          visible={showModal}
-          onDismiss={() => setShowModal(false)}
-          contentContainerStyle={{
-            backgroundColor: "white",
-            padding: 20,
-            margin: 20,
-            zIndex: 1000,
+          visible={modalVisible}
+          onDismiss={() => {
+            setModalVisible(false);
+            navigation.navigate("home");
           }}
         >
           <View
             style={{
-              flexDirection: "row",
-              flexWrap: "wrap",
+              backgroundColor: "white",
+              padding: 20,
+              borderRadius: 5,
+              margin: 20,
             }}
           >
-            {ingredients.map((ingredient) => (
-              <Chip
-                key={ingredient.id}
-                style={{ margin: 5 }}
-                mode={
-                  cocktail.ingredients.includes(ingredient)
-                    ? "flat"
-                    : "outlined"
-                }
-                onPress={() => handleAddIngredient(ingredient)}
+            <Text
+              style={{
+                textAlign: "center",
+                fontWeight: "bold",
+              }}
+              variant="titleMedium"
+            >
+              Votre cocktail a bien été créé
+            </Text>
+            <Text
+              style={{
+                textAlign: "center",
+              }}
+            >
+              Vous pouvez désormais retrouver{" "}
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  marginTop: 10,
+                }}
               >
-                <Text>{ingredient.name}</Text>
-              </Chip>
-            ))}
+                {cocktail.name}
+              </Text>{" "}
+              dans la liste des cocktails
+            </Text>
+            <Button
+              style={{
+                marginTop: 10,
+              }}
+              onPress={() => {
+                setModalVisible(false);
+                navigation.navigate("home");
+              }}
+              mode="contained"
+            >
+              Retour à l'accueil
+            </Button>
           </View>
         </Modal>
       </View>
