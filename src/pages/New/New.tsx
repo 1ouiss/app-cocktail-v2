@@ -9,8 +9,6 @@ import { Button, Chip, Modal, TextInput } from "react-native-paper";
 import { useContext, useState } from "react";
 import { updateDoc } from "../../database/set";
 import { DatabaseContext } from "../../context/DatabaseContext";
-import { IconEye, IconPlus } from "@tabler/icons-react-native";
-import { IconSource } from "react-native-paper/lib/typescript/components/Icon";
 
 const New: React.FC<NavigationProps> = ({ navigation }) => {
   const { user, ingredients } = useContext(DatabaseContext);
@@ -66,7 +64,6 @@ const New: React.FC<NavigationProps> = ({ navigation }) => {
           onChangeText={(e) => {
             setCocktail({ ...cocktail, name: e });
           }}
-          right={<TextInput.Icon icon={(<IconEye />) as IconSource} />}
         />
         <TextInput
           label="Description de votre cocktail"
