@@ -30,9 +30,25 @@ const Home: React.FC<NavigationProps> = ({ navigation }) => {
             value={search}
             onChangeText={(text) => {
               setSearch(text);
-              const filteredCocktails = cocktails.filter((cocktail) =>
-                cocktail.name.toLowerCase().includes(text.toLowerCase())
-              );
+              const filteredCocktails = cocktails.filter((cocktail) => {
+                const cocktailName = cocktail.name.toLowerCase();
+                const searchValue = text.toLowerCase();
+                const cocktailIngredients = cocktail.ingredients.map(
+                  (ingredient) => ingredient.name?.toLowerCase()
+                );
+                const cleanCocktailIngredients = cocktailIngredients.filter(
+                  (ingredient) => ingredient !== undefined
+                );
+
+                if (
+                  cocktailName.includes(searchValue) ||
+                  cleanCocktailIngredients.some((ingredient) =>
+                    ingredient.includes(searchValue)
+                  )
+                ) {
+                  return true;
+                }
+              });
               setFilterableCocktails(filteredCocktails);
             }}
           />
