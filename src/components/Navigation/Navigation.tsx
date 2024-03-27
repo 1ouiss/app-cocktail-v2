@@ -7,9 +7,9 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "row",
-    backgroundColor: "red",
+    backgroundColor: "#f0f0f0",
     alignItems: "center",
-    paddingBottom: 50,
+    paddingBottom: 30,
     paddingTop: 20,
     paddingLeft: 30,
     paddingRight: 30,
