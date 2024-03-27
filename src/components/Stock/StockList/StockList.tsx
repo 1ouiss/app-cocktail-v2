@@ -33,7 +33,6 @@ const StockList = () => {
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
-  const [isExtended, setIsExtended] = React.useState(true);
   const containerStyle = {
     backgroundColor: "white",
     padding: 20,
@@ -45,10 +44,14 @@ const StockList = () => {
     <View style={{ minHeight: "100%" }}>
       <View style={styles.headerStock}>
         <Text>Votre stock</Text>
+
         <Pressable style={styles.button} onPress={showModal}>
           <IconPlus size={26} color={"#FFF"} />
         </Pressable>
       </View>
+      {user?.stock.length === 0 && (
+        <Text style={styles.text}>Votre stock est vide</Text>
+      )}
       {user?.stock.map((ingredient, index) => (
         <View key={index}>
           <IngredientComponent ingredient={ingredient} />
