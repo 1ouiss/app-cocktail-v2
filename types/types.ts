@@ -12,6 +12,7 @@ type CocktailType = {
   description: string;
   ingredients: IngredientType[];
   user?: string;
+  image: string;
 };
 
 type User = {
