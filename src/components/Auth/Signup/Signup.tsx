@@ -7,10 +7,9 @@ import { updateDoc } from "../../../database/set";
 import { auth } from "../../../firebase";
 import { useState, FC } from "react";
 import { NavigationProp } from "@react-navigation/native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useContext } from "react";
 import { DatabaseContext } from "../../../context/DatabaseContext";
-
 
 const Signup: FC<{
   setIsSignup: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,7 +22,7 @@ const Signup: FC<{
     firstName: "",
     lastName: "",
   });
-  const {setIsSigned} = useContext(DatabaseContext);
+  const { setIsSigned } = useContext(DatabaseContext);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -34,12 +33,12 @@ const Signup: FC<{
     });
   };
 
-  const storeData = async (value:string) => {
+  const storeData = async (value: string) => {
     try {
-        await AsyncStorage.setItem('user', value);
-        console.log(value);
+      await AsyncStorage.setItem("user", value);
+      console.log(value);
     } catch (e) {
-        console.log(e);
+      console.log(e);
     }
   };
   const handleSubmit = async () => {
@@ -61,24 +60,27 @@ const Signup: FC<{
           email: newUser.email,
           firstName: user.firstName,
           lastName: user.lastName,
+          stock: [],
         },
         collectionId: "users",
         docId: newUser.uid,
       });
       setIsSigned(true);
-    } catch (err : any) {
-        switch (err.code) {
-            case "auth/email-already-in-use":
-                setErrorMessage("Cet email est déjà utilisé.");
-                setError(true);
-                break;
-            case "auth/weak-password":
-                setErrorMessage("Le mot de passe doit contenir au moins 6 caractères.");
-                setError(true);
-                break;
-            default:
-            }
-        console.log(err);      
+    } catch (err: any) {
+      switch (err.code) {
+        case "auth/email-already-in-use":
+          setErrorMessage("Cet email est déjà utilisé.");
+          setError(true);
+          break;
+        case "auth/weak-password":
+          setErrorMessage(
+            "Le mot de passe doit contenir au moins 6 caractères."
+          );
+          setError(true);
+          break;
+        default:
+      }
+      console.log(err);
     }
   };
 
@@ -91,7 +93,9 @@ const Signup: FC<{
         value={user.email}
         onChangeText={(e) => handleChange(e, "email")}
       />
-        {error && errorMessage.includes("email") && (<Text>Erreur: {errorMessage}</Text>)}
+      {error && errorMessage.includes("email") && (
+        <Text>Erreur: {errorMessage}</Text>
+      )}
       <TextInput
         style={styles.input}
         label="FirstName"
@@ -114,7 +118,9 @@ const Signup: FC<{
         onChangeText={(e) => handleChange(e, "password")}
         secureTextEntry
       />
-        {error && errorMessage.includes("mot de passe") && (<Text>Erreur: {errorMessage}</Text>)}      
+      {error && errorMessage.includes("mot de passe") && (
+        <Text>Erreur: {errorMessage}</Text>
+      )}
       <Button mode="contained" onPress={handleSubmit}>
         S'inscrire
       </Button>
