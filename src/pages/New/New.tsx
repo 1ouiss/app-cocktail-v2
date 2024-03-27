@@ -27,7 +27,6 @@ const New: React.FC<NavigationProps> = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   const handleAddCocktail = async () => {
-    console.log(cocktail);
     const newCocktail = {
       id: cocktail.name.toLocaleLowerCase().split(" ").join("_"),
       ...cocktail,
@@ -66,7 +65,6 @@ const New: React.FC<NavigationProps> = ({ navigation }) => {
     const filteredIngredients = ingredients.filter((ingredient) =>
       ingredient.name.toLowerCase().includes(e.toLowerCase())
     );
-    console.log(filteredIngredients);
     setAvailableIngredients(filteredIngredients);
   };
 
