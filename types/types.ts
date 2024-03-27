@@ -7,18 +7,20 @@ type IngredientType = {
 };
 
 type CocktailType = {
-  id: string;
+  id?: string;
   name: string;
   description: string;
-  ingredients: Omit<IngredientType, "name">[];
+  ingredients: IngredientType[];
+  user?: string;
   image: string;
 };
 
 type User = {
-  uid: string;
+  id: string;
   email: string;
   firstName: string;
   lastName: string;
+  stock: IngredientType[];
 };
 
 type Cocktails = CocktailType[];
