@@ -11,6 +11,7 @@ type CocktailType = {
   name: string;
   description: string;
   ingredients: Omit<IngredientType, "name">[];
+  image: string;
 };
 
 type User = {
