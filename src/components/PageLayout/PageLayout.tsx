@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 import Navigation from "../Navigation";
-import { NavigationProp } from "@react-navigation/native";
+import { NavigationProp, useRoute } from "@react-navigation/native";
 import { Text } from "react-native-paper";
 
 type PageLayoutProps = {
@@ -9,11 +9,14 @@ type PageLayoutProps = {
 };
 
 const PageLayout = ({ children, navigation }: PageLayoutProps) => {
+  const route = useRoute();
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text variant="titleLarge">Cocktelligence</Text>
-      </View>
+      {route.name !== "login" && (
+        <View style={styles.header}>
+          <Text variant="titleLarge">Cocktelligence</Text>
+        </View>
+      )}
       <ScrollView
         style={{
           width: "100%",
@@ -23,7 +26,7 @@ const PageLayout = ({ children, navigation }: PageLayoutProps) => {
       >
         {children}
       </ScrollView>
-      <Navigation navigation={navigation} />
+      {route.name !== "login" && <Navigation navigation={navigation} />}
     </View>
   );
 };
