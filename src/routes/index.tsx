@@ -12,7 +12,7 @@ import { DatabaseContext } from "../context/DatabaseContext";
 const Stack = createNativeStackNavigator();
 
 const Routes = () => {
-  const {user}= useContext(DatabaseContext);
+  const { user } = useContext(DatabaseContext);
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -22,16 +22,17 @@ const Routes = () => {
           animation: "none",
         }}
       >
-        {
-          user  ? <>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Stock" component={Stock} />
-        <Stack.Screen name="New" component={New} />
-        <Stack.Screen name="Favorites" component={Favorites} />
-        <Stack.Screen name="User" component={User} />
-          </> : 
-        <Stack.Screen name="Login" component={Login} />
-        }
+        {user ? (
+          <>
+            <Stack.Screen name="home" component={Home} />
+            <Stack.Screen name="stock" component={Stock} />
+            <Stack.Screen name="new" component={New} />
+            <Stack.Screen name="favorites" component={Favorites} />
+            <Stack.Screen name="user" component={User} />
+          </>
+        ) : (
+          <Stack.Screen name="login" component={Login} />
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

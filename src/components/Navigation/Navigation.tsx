@@ -1,7 +1,14 @@
-import { Button, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { NavigationProps } from "../../../types/types";
 import { useEffect } from "react";
 import { useRoute } from "@react-navigation/native";
+import {
+  IconDatabase,
+  IconHeart,
+  IconHome,
+  IconNewSection,
+  IconUser,
+} from "@tabler/icons-react-native";
 
 const styles = StyleSheet.create({
   container: {
@@ -16,7 +23,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     width: "100%",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
   },
 });
 
@@ -29,15 +36,36 @@ const Navigation: React.FC<NavigationProps> = ({ navigation }) => {
   }, []);
   return (
     <View style={styles.container}>
-      <Button title="home" onPress={() => navigation.navigate("Home")} />
-      <Button title="stock" onPress={() => navigation.navigate("Stock")} />
-      <Button title="New" onPress={() => navigation.navigate("New")} />
-      <Button
-        title="favorites"
-        onPress={() => navigation.navigate("Favorites")}
-      />
-      <Button title="user" onPress={() => navigation.navigate("User")} />
-      {/* <Button title="login" onPress={() => navigation.navigate("Login")} /> */}
+      <Pressable onPress={() => navigation.navigate("home")}>
+        <IconHome
+          size={26}
+          color={route.name === "home" ? "#006FEE" : "black"}
+        />
+      </Pressable>
+      <Pressable onPress={() => navigation.navigate("stock")}>
+        <IconDatabase
+          size={26}
+          color={route.name === "stock" ? "#006FEE" : "black"}
+        />
+      </Pressable>
+      <Pressable onPress={() => navigation.navigate("new")}>
+        <IconNewSection
+          size={26}
+          color={route.name === "new" ? "#006FEE" : "black"}
+        />
+      </Pressable>
+      <Pressable onPress={() => navigation.navigate("favorites")}>
+        <IconHeart
+          size={26}
+          color={route.name === "favorites" ? "#006FEE" : "black"}
+        />
+      </Pressable>
+      <Pressable onPress={() => navigation.navigate("user")}>
+        <IconUser
+          size={26}
+          color={route.name === "user" ? "#006FEE" : "black"}
+        />
+      </Pressable>
     </View>
   );
 };
