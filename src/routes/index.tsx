@@ -6,25 +6,33 @@ import New from "../pages/New";
 import Stock from "../pages/Stock";
 import User from "../pages/User";
 import Login from "../pages/Login";
+import { useContext } from "react";
+import { DatabaseContext } from "../context/DatabaseContext";
 
 const Stack = createNativeStackNavigator();
 
 const Routes = () => {
+  const { user } = useContext(DatabaseContext);
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Login"
         screenOptions={{
           headerShown: false,
           animation: "none",
         }}
       >
-        <Stack.Screen name="home" component={Home} />
-        <Stack.Screen name="stock" component={Stock} />
-        <Stack.Screen name="new" component={New} />
-        <Stack.Screen name="favorites" component={Favorites} />
-        <Stack.Screen name="user" component={User} />
-        <Stack.Screen name="login" component={Login} />
+        {user ? (
+          <>
+            <Stack.Screen name="home" component={Home} />
+            <Stack.Screen name="stock" component={Stock} />
+            <Stack.Screen name="new" component={New} />
+            <Stack.Screen name="favorites" component={Favorites} />
+            <Stack.Screen name="user" component={User} />
+          </>
+        ) : (
+          <Stack.Screen name="login" component={Login} />
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
