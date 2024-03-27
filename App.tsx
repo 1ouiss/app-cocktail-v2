@@ -9,6 +9,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { updateDoc } from "./src/database/set";
 import { getDbDocs } from "./src/database/read";
 import { DatabaseContextProvider } from "./src/context/DatabaseContext";
+import { theme } from "./src/theme/theme";
 
 // export default function App() {
 //   const [selectedIngredient, setSelectedIngredient] = useState<Ingredients>([]);
@@ -91,9 +92,11 @@ export default function App() {
     console.log(cocktails);
   };
   return (
-    <DatabaseContextProvider>
-      <Routes />
-    </DatabaseContextProvider>
+    <PaperProvider theme={theme()}>
+      <DatabaseContextProvider>
+        <Routes />
+      </DatabaseContextProvider>
+    </PaperProvider>
   );
 }
 
