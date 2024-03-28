@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Cocktails, NavigationProps } from "../../../types/types";
 import PageLayout from "../../components/PageLayout/PageLayout";
 import { TextInput, Title } from "react-native-paper";
@@ -30,16 +30,41 @@ const Home: React.FC<NavigationProps> = ({ navigation }) => {
             value={search}
             onChangeText={(text) => {
               setSearch(text);
-              const filteredCocktails = cocktails.filter((cocktail) =>
-                cocktail.name.toLowerCase().includes(text.toLowerCase())
-              );
+              const filteredCocktails = cocktails.filter((cocktail) => {
+                const cocktailName = cocktail.name.toLowerCase();
+                const searchValue = text.toLowerCase();
+                const cocktailIngredients = cocktail.ingredients.map(
+                  (ingredient) => ingredient.name?.toLowerCase()
+                );
+                const cleanCocktailIngredients = cocktailIngredients.filter(
+                  (ingredient) => ingredient !== undefined
+                );
+
+                if (
+                  cocktailName.includes(searchValue) ||
+                  cleanCocktailIngredients.some((ingredient) =>
+                    ingredient.includes(searchValue)
+                  )
+                ) {
+                  return true;
+                }
+              });
               setFilterableCocktails(filteredCocktails);
             }}
           />
         </View>
         {/* <CreateDataInDb /> */}
         {filterableCocktails.map((cocktail) => (
-          <CocktailCard cocktail={cocktail} key={cocktail.id} />
+          <Pressable
+            onPress={() =>
+              navigation.navigate("cocktail", {
+                cocktail,
+              })
+            }
+            key={cocktail.id}
+          >
+            <CocktailCard cocktail={cocktail} />
+          </Pressable>
         ))}
       </>
     </PageLayout>

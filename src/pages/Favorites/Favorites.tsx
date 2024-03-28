@@ -1,4 +1,4 @@
-import { ScrollView, View } from "react-native";
+import { Pressable, ScrollView, View } from "react-native";
 import { CocktailType, NavigationProps } from "../../../types/types";
 import PageLayout from "../../components/PageLayout/PageLayout";
 import { useContext } from "react";
@@ -27,14 +27,25 @@ const Favorites: React.FC<NavigationProps> = ({ navigation }) => {
         </Text>
         {user?.favorites && user?.favorites.length > 0 ? (
           user?.favorites.map((favorite) => (
-            <CocktailCard
-              key={favorite}
-              cocktail={
-                cocktails.find(
-                  (cocktail) => cocktail.id === favorite
-                ) as CocktailType
+            <Pressable
+              onPress={() =>
+                navigation.navigate("cocktail", {
+                  cocktail: cocktails.find(
+                    (cocktail) => cocktail.id === favorite
+                  ) as CocktailType,
+                })
               }
-            />
+              key={favorite}
+            >
+              <CocktailCard
+                key={favorite}
+                cocktail={
+                  cocktails.find(
+                    (cocktail) => cocktail.id === favorite
+                  ) as CocktailType
+                }
+              />
+            </Pressable>
           ))
         ) : (
           <View
@@ -82,11 +93,20 @@ const Favorites: React.FC<NavigationProps> = ({ navigation }) => {
                 minWidth: 300,
               }}
             >
-              <CocktailCard
+              <Pressable
+                onPress={() =>
+                  navigation.navigate("cocktail", {
+                    cocktail,
+                  })
+                }
                 key={cocktail.id}
-                cocktail={cocktail}
-                showDescription={false}
-              />
+              >
+                <CocktailCard
+                  key={cocktail.id}
+                  cocktail={cocktail}
+                  showDescription={false}
+                />
+              </Pressable>
             </View>
           ))}
         </ScrollView>
