@@ -36,17 +36,34 @@ const IngredientComponent = ({
       style={{
         padding: 10,
         margin: 10,
-        backgroundColor: "grey",
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderColor: "grey",
         borderRadius: 6,
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
+        width: 95,
+        height: 130,
         justifyContent: "space-between",
         alignItems: "center",
       }}
     >
-      <View style={{ width: 100, height: 100, backgroundColor: "red" }} />
-      <Text>{ingredient.name}</Text>
-      <IconButton icon="delete" onPress={() => onPressDelete(ingredient.id)} />
+      <View style={{ width: 70, height: 70, backgroundColor: "blue" }} />
+      <Text style={{ marginTop: 10 }}>{ingredient.name}</Text>
+      <IconButton
+        style={{
+          position: "absolute",
+          top: -20,
+          right: -20,
+          backgroundColor: "red",
+          width: 30,
+          height: 30,
+        }}
+        size={18}
+        iconColor="white"
+        icon="delete"
+        onPress={() => onPressDelete(ingredient.id)}
+      />
     </View>
   );
 };

@@ -1,11 +1,12 @@
 import PageLayout from "../../components/PageLayout/PageLayout";
 import { CocktailType, NavigationProps } from "../../../types/types";
 import StockList from "../../components/Stock/StockList/StockList";
-import { Text } from "react-native-paper";
+import { Modal, Text } from "react-native-paper";
 import { Pressable, ScrollView, View } from "react-native";
 import { useContext, useEffect, useState } from "react";
 import CocktailCard from "../../components/CocktailCard/CocktailCard";
 import { DatabaseContext } from "../../context/DatabaseContext";
+import StockModal from "../../components/Stock/StockModal";
 
 const Stock: React.FC<NavigationProps> = ({ navigation }) => {
   const { user, cocktails } = useContext(DatabaseContext);
@@ -13,6 +14,17 @@ const Stock: React.FC<NavigationProps> = ({ navigation }) => {
   const [availableCocktails, setAvailableCocktails] = useState<CocktailType[]>(
     []
   );
+  const [visible, setVisible] = useState(false);
+
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+
+  const containerStyle = {
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
+    zIndex: 1000,
+  };
 
   useEffect(() => {
     if (user) {
@@ -32,11 +44,12 @@ const Stock: React.FC<NavigationProps> = ({ navigation }) => {
   return (
     <PageLayout navigation={navigation}>
       <>
-        <StockList />
+        <StockList showModal={showModal} />
         <View
           style={{
             width: "100%",
             height: "100%",
+            zIndex: -10,
           }}
         >
           <Text
@@ -65,11 +78,11 @@ const Stock: React.FC<NavigationProps> = ({ navigation }) => {
                   }
                   key={cocktail.id}
                 >
-                  <CocktailCard
+                  {/* <CocktailCard
                     key={cocktail.id}
                     cocktail={cocktail}
                     showDescription={false}
-                  />
+                  /> */}
                 </Pressable>
               </View>
             ))}
