@@ -42,6 +42,7 @@ const CocktailCard = ({
         display: "flex",
         flexDirection: "column",
         gap: 10,
+        zIndex: 1,
       }}
     >
       <View

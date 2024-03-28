@@ -1,3 +1,3 @@
-import StockModal from "./StockModal";
+import StockAddInput from "./StockAddInput";
 
-export default StockModal;
+export default StockAddInput;

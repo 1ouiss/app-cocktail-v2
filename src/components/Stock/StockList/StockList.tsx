@@ -3,11 +3,11 @@ import { CocktailType, Ingredients } from "../../../../types/types";
 import { Pressable, StyleSheet, View } from "react-native";
 import React, { useContext, useState } from "react";
 import { DatabaseContext } from "../../../context/DatabaseContext";
-import StockModal from "../StockModal";
 import IngredientComponent from "../IngredientComponent/IngredientComponent";
 import { IconPlus } from "@tabler/icons-react-native";
+import StockModal from "../StockModal";
 
-const StockList = () => {
+const StockList = ({ showModal }: { showModal: () => void }) => {
   const { user } = useContext(DatabaseContext);
   const styles = StyleSheet.create({
     button: {
@@ -24,47 +24,38 @@ const StockList = () => {
     headerStock: {
       display: "flex",
       flexDirection: "row",
-      justifyContent: "space-between",
+      justifyContent: "center",
       alignItems: "center",
       padding: 10,
     },
   });
-  const [visible, setVisible] = React.useState(false);
-
-  const showModal = () => setVisible(true);
-  const hideModal = () => setVisible(false);
-  const containerStyle = {
-    backgroundColor: "white",
-    padding: 20,
-    borderRadius: 10,
-    zIndex: 1000,
-  };
 
   return (
-    <View>
+    <View style={{ padding: 20 }}>
       <View style={styles.headerStock}>
-        <Text>Votre stock</Text>
-
-        <Pressable style={styles.button} onPress={showModal}>
-          <IconPlus size={26} color={"#FFF"} />
-        </Pressable>
+        <Text style={{ fontSize: 25 }}>Votre stock</Text>
       </View>
+      <StockModal />
       {user?.stock.length === 0 && (
         <Text style={styles.text}>Votre stock est vide</Text>
       )}
-      {user?.stock.map((ingredient, index) => (
-        <View key={index}>
-          <IngredientComponent ingredient={ingredient} />
-        </View>
-      ))}
-
-      <Modal
-        visible={visible}
-        onDismiss={hideModal}
-        contentContainerStyle={containerStyle}
+      <View
+        style={{
+          borderRadius: 6,
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          margin: "auto",
+          marginTop: 10,
+          // backgroundColor: "red",
+        }}
       >
-        <StockModal hideModal={hideModal} />
-      </Modal>
+        {user?.stock.map((ingredient, index) => (
+          <View key={index}>
+            <IngredientComponent ingredient={ingredient} />
+          </View>
+        ))}
+      </View>
     </View>
   );
 };
