@@ -175,31 +175,46 @@ const New: React.FC<NavigationProps> = ({ navigation }) => {
             </ScrollView>
           </View>
         )}
-        {cocktail.ingredients.length > 0 && (
-          <View
+
+        <View>
+          <Text
+            variant="titleMedium"
             style={{
-              flexDirection: "row",
-              flexWrap: "wrap",
-              gap: 5,
-              marginTop: 5,
+              paddingLeft: 5,
+              paddingBottom: 5,
             }}
           >
-            {cocktail.ingredients.map((ingredient) => (
-              <Chip
-                key={ingredient.id}
-                onPress={() => handleAddIngredient(ingredient)}
-                icon="close"
-                theme={{
-                  colors: {
-                    primary: "#180828",
-                  },
-                }}
-              >
-                <Text>{ingredient.name}</Text>
-              </Chip>
-            ))}
-          </View>
-        )}
+            {cocktail.ingredients.length > 0
+              ? "Ingrédients sélectionnés : "
+              : "Aucun ingrédient sélectionné"}
+          </Text>
+          {cocktail.ingredients.length > 0 && (
+            <View
+              style={{
+                flexDirection: "row",
+                flexWrap: "wrap",
+                gap: 5,
+                marginTop: 5,
+              }}
+            >
+              {cocktail.ingredients.map((ingredient) => (
+                <Chip
+                  key={ingredient.id}
+                  onPress={() => handleAddIngredient(ingredient)}
+                  icon="close"
+                  theme={{
+                    colors: {
+                      primary: "#180828",
+                    },
+                  }}
+                >
+                  <Text>{ingredient.name}</Text>
+                </Chip>
+              ))}
+            </View>
+          )}
+        </View>
+
         <TextInput
           label="Description de votre cocktail"
           mode="outlined"
@@ -217,6 +232,11 @@ const New: React.FC<NavigationProps> = ({ navigation }) => {
             marginTop: 10,
           }}
           mode="contained"
+          disabled={
+            cocktail.name === "" &&
+            cocktail.ingredients.length === 0 &&
+            cocktail.description === ""
+          }
         >
           Créer mon cocktail
         </Button>
