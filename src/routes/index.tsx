@@ -9,6 +9,7 @@ import Login from "../pages/Login";
 import { useContext } from "react";
 import { DatabaseContext } from "../context/DatabaseContext";
 import Cocktail from "../pages/Cocktail/Cocktail";
+import GetStarted from "../pages/GetStarted";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +18,7 @@ const Routes = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName="getstarted"
         screenOptions={{
           headerShown: false,
           animation: "none",
@@ -33,7 +34,10 @@ const Routes = () => {
             <Stack.Screen name="cocktail" component={Cocktail} />
           </>
         ) : (
-          <Stack.Screen name="login" component={Login} />
+          <>
+            <Stack.Screen name="getstarted" component={GetStarted} />
+            <Stack.Screen name="login" component={Login} />
+          </>
         )}
       </Stack.Navigator>
     </NavigationContainer>
