@@ -3,14 +3,19 @@ import { CocktailType } from "../../../types/types";
 import { ImageBackground, Pressable, View } from "react-native";
 import { useContext } from "react";
 import { DatabaseContext } from "../../context/DatabaseContext";
-import { IconHeart, IconHeartFilled } from "@tabler/icons-react-native";
+import { IconHeart } from "@tabler/icons-react-native";
+import { VariantProp } from "react-native-paper/lib/typescript/components/Typography/types";
 
 const CocktailCard = ({
   cocktail,
   showDescription = true,
+  variantTitle = "headlineSmall",
+  height = 200,
 }: {
   cocktail: CocktailType;
   showDescription?: boolean;
+  variantTitle?: VariantProp<any>;
+  height?: number;
 }) => {
   const { user, setUser } = useContext(DatabaseContext);
 
@@ -48,7 +53,7 @@ const CocktailCard = ({
       <View
         style={{
           width: "100%",
-          height: 200,
+          height,
           borderRadius: 16,
           backgroundColor: "#E4D4F4",
         }}
@@ -87,8 +92,8 @@ const CocktailCard = ({
           )}
         </Pressable>
       </View>
-      <View style={{ flex: 1 }}>
-        <Text variant="headlineSmall">{cocktail.name}</Text>
+      <View style={{ flex: 1, paddingVertical: 5 }}>
+        <Text variant={variantTitle}>{cocktail.name}</Text>
         {showDescription && (
           <Text variant="bodyMedium">{cocktail.description}</Text>
         )}

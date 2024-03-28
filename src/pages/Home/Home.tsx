@@ -54,18 +54,35 @@ const Home: React.FC<NavigationProps> = ({ navigation }) => {
           />
         </View>
         {/* <CreateDataInDb /> */}
-        {filterableCocktails.map((cocktail) => (
-          <Pressable
-            onPress={() =>
-              navigation.navigate("cocktail", {
-                cocktail,
-              })
-            }
-            key={cocktail.id}
-          >
-            <CocktailCard cocktail={cocktail} />
-          </Pressable>
-        ))}
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+          }}
+        >
+          {filterableCocktails.map((cocktail) => (
+            <Pressable
+              onPress={() =>
+                navigation.navigate("cocktail", {
+                  cocktail,
+                })
+              }
+              key={cocktail.id}
+              style={{
+                width: "50%",
+              }}
+            >
+              <CocktailCard
+                cocktail={cocktail}
+                showDescription={false}
+                variantTitle="bodyLarge"
+                height={150}
+              />
+            </Pressable>
+          ))}
+        </View>
       </>
     </PageLayout>
   );
