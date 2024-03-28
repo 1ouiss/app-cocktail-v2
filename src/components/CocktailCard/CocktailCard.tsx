@@ -1,4 +1,4 @@
-import { Text } from "react-native-paper";
+import { Icon, Text } from "react-native-paper";
 import { CocktailType } from "../../../types/types";
 import { ImageBackground, Pressable, View } from "react-native";
 import { useContext } from "react";
@@ -80,7 +80,7 @@ const CocktailCard = ({
           }}
         >
           {user?.favorites.includes(cocktail.id as string) ? (
-            <IconHeartFilled size={20} color="white" />
+            <Icon source="heart" size={20} color="#F31260" />
           ) : (
             <IconHeart size={20} color="white" />
           )}
