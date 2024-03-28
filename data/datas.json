@@ -1,114 +1,146 @@
 {
-    "ingredients": [
-        {
-            "name": "Vodka",
-            "id": "vodka"
-        },
-        {
-            "name": "Gin",
-            "id": "gin"
-        },
-        {
-            "name": "Rum",
-            "id": "rum"
-        },
-        {
-            "name": "Tequila",
-            "id": "tequila"
-        },
-        {
-            "name": "Triple Sec",
-            "id": "triple_sec"
-        },
-        {
-            "name": "Simple Syrup",
-            "id": "simple_syrup"
-        },
-        {
-            "name": "Club Soda",
-            "id": "club_soda"
-        },
-        {
-            "name": "Orange Juice",
-            "id": "orange_juice"
-        },
-        {
-            "name": "Cranberry Juice",
-            "id": "cranberry_juice"
-        },
-        {
-            "name": "Apple Juice",
-            "id": "apple_juice"
-        },
-        {
-            "name": "Pineapple Juice",
-            "id": "pineapple_juice"
-        },
-        {
-            "name": "Mango Juice",
-            "id": "mango_juice"
-        },
-        {
-            "name": "Strawberry Juice",
-            "id": "strawberry_juice"
-        },
-        {
-            "name": "Watermelon Juice",
-            "id": "watermelon_juice"
-        },
-        {
-            "name": "Grapefruit Juice",
-            "id": "grapefruit_juice"
-        },
-        {
-            "name": "Lemon Juice",
-            "id": "lemon_juice"
-        },
-        {
-            "name": "Lime Juice",
-            "id": "lime_juice"
-        },
-        {
-            "id": "mint_leaves",
-            "name": "Mint Leaves"
-        }
+            "ingredients": [
+                {
+                    "name": "Vodka",
+                    "id": "vodka"
+                },
+                {
+                    "name": "Gin",
+                    "id": "gin"
+                },
+                {
+                    "name": "Rhum",
+                    "id": "rum"
+                },
+                {
+                    "name": "Tequila",
+                    "id": "tequila"
+                },
+                {
+                    "name": "Triple Sec",
+                    "id": "triple_sec"
+                },
+                {
+                    "name": "Sirop de Sucre",
+                    "id": "simple_syrup"
+                },
+                {
+                    "name": "Eau Gazeuse",
+                    "id": "club_soda"
+                },
+                {
+                    "name": "Jus d'Orange",
+                    "id": "orange_juice"
+                },
+                {
+                    "name": "Jus de Canneberge",
+                    "id": "cranberry_juice"
+                },
+                {
+                    "name": "Jus de Pomme",
+                    "id": "apple_juice"
+                },
+                {
+                    "name": "Jus d'Ananas",
+                    "id": "pineapple_juice"
+                },
+                {
+                    "name": "Jus de Mangue",
+                    "id": "mango_juice"
+                },
+                {
+                    "name": "Jus de Fraise",
+                    "id": "strawberry_juice"
+                },
+                {
+                    "name": "Jus de Pastèque",
+                    "id": "watermelon_juice"
+                },
+                {
+                    "name": "Jus de Pamplemousse",
+                    "id": "grapefruit_juice"
+                },
+                {
+                    "name": "Jus de Citron",
+                    "id": "lemon_juice"
+                },
+                {
+                    "name": "Jus de Lime",
+                    "id": "lime_juice"
+                },
+                {
+                    "id": "mint_leaves",
+                    "name": "Feuilles de Menthe"
+                },
+                {
+                    "id": "dry_vermouth",
+                    "name": "Vermouth Sec"
+                },
+                {
+                    "id": "champagne",
+                    "name": "Champagne"
+                },
+                {
+                    "id": "coconut_cream",
+                    "name": "Crème de Coco"
+                },
+                {
+                    "id": "sugar",
+                    "name": "Sucre"
+                },
+                {
+                    "id": "salt",
+                    "name": "Sel"
+                },
+                {
+                    "id": "ice",
+                    "name": "Glaçons"
+                }
     ],
     "cocktails": [
         {
             "id": "long_island_iced_tea",
             "name": "Long Island Iced Tea",
-            "description": "A strong cocktail made with a variety of spirits and a splash of cola",
+            "description": "Un cocktail fort à base de divers alcools et une touche de cola",
             "ingredients": [
                 {
                     "id": "vodka",
+                    "name": "Vodka",
                     "quantity": 0.5
                 },
                 {
                     "id": "gin",
+                    "name": "Gin",
                     "quantity": 0.5
                 },
                 {
                     "id": "rum",
+                    "name": "Rhum",
                     "quantity": 0.5
                 },
                 {
                     "id": "tequila",
+                    "name": "Tequila",
                     "quantity": 0.5
                 },
                 {
                     "id": "triple_sec",
+                    "name": "Triple Sec",
                     "quantity": 0.5
                 },
                 {
                     "id": "simple_syrup",
+                    "name": "Sirop de Sucre",
                     "quantity": 0.5
                 },
                 {
                     "id": "club_soda",
+                    "name": "Eau Gazeuse",
                     "quantity": 1
                 },
                 {
                     "id": "lemon_juice",
+                    "name": "Jus de Citron",
                     "quantity": 0.5
                 }
             ]
@@ -116,26 +148,31 @@
         {
             "id": "mojito",
             "name": "Mojito",
-            "description": "A refreshing cocktail made with rum, lime juice, mint leaves, sugar, and soda water",
+            "description": "Un cocktail rafraîchissant à base de rhum, jus de citron vert, feuilles de menthe, sucre et eau gazeuse",
             "ingredients": [
                 {
                     "id": "rum",
+                    "name": "Rhum",
                     "quantity": 2
                 },
                 {
                     "id": "lime_juice",
+                    "name": "Jus de Citron Vert",
                     "quantity": 1
                 },
                 {
                     "id": "mint_leaves",
+                    "name": "Feuilles de Menthe",
                     "quantity": 6
                 },
                 {
                     "id": "simple_syrup",
+                    "name": "Sirop de Sucre",
                     "quantity": 1
                 },
                 {
                     "id": "club_soda",
+                    "name": "Eau Gazeuse",
                     "quantity": 2
                 }
             ]
@@ -143,18 +180,21 @@
         {
             "id": "margarita",
             "name": "Margarita",
-            "description": "A classic tequila-based cocktail with lime juice and triple sec",
+            "description": "Un cocktail classique à base de tequila, jus de citron vert et triple sec",
             "ingredients": [
                 {
                     "id": "tequila",
+                    "name": "Tequila",
                     "quantity": 2
                 },
                 {
                     "id": "lime_juice",
+                    "name": "Jus de Citron Vert",
                     "quantity": 1
                 },
                 {
                     "id": "triple_sec",
+                    "name": "Triple Sec",
                     "quantity": 1
                 }
             ]
@@ -162,22 +202,26 @@
         {
             "id": "cosmopolitan",
             "name": "Cosmopolitan",
-            "description": "A classic vodka-based cocktail with cranberry juice and lime juice",
+            "description": "Un cocktail classique à base de vodka, jus de canneberge et jus de citron vert",
             "ingredients": [
                 {
                     "id": "vodka",
+                    "name": "Vodka",
                     "quantity": 1.5
                 },
                 {
                     "id": "cranberry_juice",
+                    "name": "Jus de Canneberge",
                     "quantity": 1
                 },
                 {
                     "id": "lime_juice",
+                    "name": "Jus de Citron Vert",
                     "quantity": 0.5
                 },
                 {
                     "id": "triple_sec",
+                    "name": "Triple Sec",
                     "quantity": 0.5
                 }
             ]
@@ -185,18 +229,21 @@
         {
             "id": "daiquiri",
             "name": "Daiquiri",
-            "description": "A classic rum-based cocktail with lime juice and simple syrup",
+            "description": "Un cocktail classique à base de rhum, jus de citron et sirop de sucre",
             "ingredients": [
                 {
                     "id": "rum",
+                    "name": "Rhum",
                     "quantity": 2
                 },
                 {
                     "id": "lime_juice",
+                    "name": "Jus de Citron",
                     "quantity": 1
                 },
                 {
                     "id": "simple_syrup",
+                    "name": "Sirop de Sucre",
                     "quantity": 0.75
                 }
             ]
@@ -204,14 +251,16 @@
         {
             "id": "martini",
             "name": "Martini",
-            "description": "A sophisticated cocktail made with gin and dry vermouth",
+            "description": "Un cocktail sophistiqué à base de gin et de vermouth sec",
             "ingredients": [
                 {
                     "id": "gin",
+                    "name": "Gin",
                     "quantity": 2.5
                 },
                 {
                     "id": "dry_vermouth",
+                    "name": "Vermouth Sec",
                     "quantity": 0.5
                 }
             ]
@@ -219,14 +268,16 @@
         {
             "id": "mimosa",
             "name": "Mimosa",
-            "description": "A refreshing cocktail made with champagne and orange juice",
+            "description": "Un cocktail rafraîchissant à base de champagne et de jus d'orange",
             "ingredients": [
                 {
                     "id": "champagne",
+                    "name": "Champagne",
                     "quantity": 2
                 },
                 {
                     "id": "orange_juice",
+                    "name": "Jus d'Orange",
                     "quantity": 1
                 }
             ]
@@ -234,18 +285,21 @@
         {
             "id": "pina_colada",
             "name": "Pina Colada",
-            "description": "A tropical cocktail made with rum, pineapple juice, and coconut cream",
+            "description": "Un cocktail tropical à base de rhum, jus d'ananas et crème de coco",
             "ingredients": [
                 {
                     "id": "rum",
+                    "name": "Rhum",
                     "quantity": 2
                 },
                 {
                     "id": "pineapple_juice",
+                    "name": "Jus d'Ananas",
                     "quantity": 3
                 },
                 {
                     "id": "coconut_cream",
+                    "name": "Crème de Coco",
                     "quantity": 1
                 }
             ]

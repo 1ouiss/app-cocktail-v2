@@ -1,4 +1,4 @@
-import { Text } from "react-native-paper";
+import { Icon, Text } from "react-native-paper";
 import { CocktailType } from "../../../types/types";
 import { ImageBackground, Pressable, View } from "react-native";
 import { useContext } from "react";
@@ -54,7 +54,11 @@ const CocktailCard = ({
         }}
       >
         <ImageBackground
-          src={cocktail.image}
+          src={
+            cocktail.image
+              ? cocktail.image
+              : "https://firebasestorage.googleapis.com/v0/b/app-cocktails.appspot.com/o/cocktails%2Fnot_found.jpeg?alt=media&token=b3be89b1-3c70-4aed-bd3a-6bebd36a7c2c"
+          }
           imageStyle={{ borderRadius: 16 }}
           style={{
             width: "100%",
@@ -77,7 +81,7 @@ const CocktailCard = ({
           }}
         >
           {user?.favorites.includes(cocktail.id as string) ? (
-            <IconHeartFilled size={20} color="white" />
+            <Icon source="heart" size={20} color="#F31260" />
           ) : (
             <IconHeart size={20} color="white" />
           )}
