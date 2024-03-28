@@ -6,8 +6,15 @@ import { DatabaseContext } from "../../../context/DatabaseContext";
 import IngredientComponent from "../IngredientComponent/IngredientComponent";
 import { IconPlus } from "@tabler/icons-react-native";
 import StockModal from "../StockModal";
+import { NavigationProp } from "@react-navigation/native";
 
-const StockList = ({ showModal }: { showModal: () => void }) => {
+const StockList = ({
+  showModal,
+  navigation,
+}: {
+  showModal: () => void;
+  navigation: NavigationProp<any>;
+}) => {
   const { user } = useContext(DatabaseContext);
   const styles = StyleSheet.create({
     button: {
@@ -52,7 +59,10 @@ const StockList = ({ showModal }: { showModal: () => void }) => {
       >
         {user?.stock.map((ingredient, index) => (
           <View key={index}>
-            <IngredientComponent ingredient={ingredient} />
+            <IngredientComponent
+              navigation={navigation}
+              ingredient={ingredient}
+            />
           </View>
         ))}
       </View>

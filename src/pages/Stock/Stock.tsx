@@ -44,7 +44,7 @@ const Stock: React.FC<NavigationProps> = ({ navigation }) => {
   return (
     <PageLayout navigation={navigation}>
       <>
-        <StockList showModal={showModal} />
+        <StockList showModal={showModal} navigation={navigation} />
         <View
           style={{
             width: "100%",
@@ -78,11 +78,11 @@ const Stock: React.FC<NavigationProps> = ({ navigation }) => {
                   }
                   key={cocktail.id}
                 >
-                  {/* <CocktailCard
+                  <CocktailCard
                     key={cocktail.id}
                     cocktail={cocktail}
                     showDescription={false}
-                  /> */}
+                  />
                 </Pressable>
               </View>
             ))}

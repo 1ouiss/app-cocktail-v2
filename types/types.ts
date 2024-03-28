@@ -4,6 +4,7 @@ type IngredientType = {
   id: string;
   name: string;
   quantity?: string;
+  image?: string;
 };
 
 type CocktailType = {

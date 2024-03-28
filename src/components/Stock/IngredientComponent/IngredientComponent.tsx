@@ -1,14 +1,17 @@
 import React, { useContext } from "react";
 import { Text, IconButton } from "react-native-paper";
 import { IngredientType } from "../../../../types/types";
-import { View } from "react-native";
+import { ImageBackground, Pressable, View } from "react-native";
 import { updateDoc } from "../../../database/set";
 import { DatabaseContext } from "../../../context/DatabaseContext";
+import { NavigationProp } from "@react-navigation/native";
 
 const IngredientComponent = ({
   ingredient,
+  navigation,
 }: {
   ingredient: IngredientType;
+  navigation: NavigationProp<any>;
 }) => {
   const { user } = useContext(DatabaseContext);
   const onPressDelete = async (id: string) => {
@@ -32,7 +35,12 @@ const IngredientComponent = ({
   };
 
   return (
-    <View
+    <Pressable
+      onPress={() => {
+        navigation.navigate("ingredientwithcocktail", {
+          ingredient,
+        });
+      }}
       style={{
         padding: 10,
         margin: 10,
@@ -48,7 +56,18 @@ const IngredientComponent = ({
         alignItems: "center",
       }}
     >
-      <View style={{ width: 70, height: 70, backgroundColor: "blue" }} />
+      <ImageBackground
+        src={
+          ingredient?.image
+            ? ingredient?.image
+            : "https://firebasestorage.googleapis.com/v0/b/app-cocktails.appspot.com/o/cocktails%2Fnot_found.jpeg?alt=media&token=b3be89b1-3c70-4aed-bd3a-6bebd36a7c2c"
+        }
+        style={{
+          width: 70,
+          height: 70,
+        }}
+        resizeMode="cover"
+      />
       <Text style={{ marginTop: 10 }}>{ingredient.name}</Text>
       <IconButton
         style={{
@@ -64,7 +83,7 @@ const IngredientComponent = ({
         icon="delete"
         onPress={() => onPressDelete(ingredient.id)}
       />
-    </View>
+    </Pressable>
   );
 };
 
