@@ -50,7 +50,7 @@ const CocktailCard = ({
           width: "100%",
           height: 200,
           borderRadius: 16,
-          backgroundColor: "red",
+          backgroundColor: "#E4D4F4",
         }}
       >
         <ImageBackground
