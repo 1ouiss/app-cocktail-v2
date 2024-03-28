@@ -3,7 +3,7 @@ import { Avatar, Button, Text } from "react-native-paper";
 import { DatabaseContext } from "../../context/DatabaseContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CocktailCard from "../CocktailCard/CocktailCard";
-import { Dimensions, StyleSheet, View } from "react-native";
+import { Dimensions, Pressable, StyleSheet, View } from "react-native";
 import {
   red100,
   redA100,
@@ -45,10 +45,12 @@ const UserComponent = () => {
         </Text>
         <Text>{user?.email}</Text>
         <Text style={styles.p}>Modifier le compte</Text>
-        <Button onPress={handleDisconnect}>Logout</Button>
       </View>
+      <Pressable style={styles.logout} onPress={handleDisconnect}>
+        <Text>Logout</Text>
+      </Pressable>
       <View style={styles.listCocktails}>
-        <Text>Les Cocktails que vous avez créé :</Text>
+        <Text style={{ fontSize: 20 }}>Les Cocktails que vous avez créé :</Text>
         {filteredCocktails.length === 0 ? (
           <Text>Vous n'avez pas encore créé de cocktails.</Text>
         ) : (
@@ -63,7 +65,7 @@ const UserComponent = () => {
 
 const styles = StyleSheet.create({
   userPage: {
-    backgroundColor: "#fff",
+    // backgroundColor: "grey",
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
@@ -78,11 +80,16 @@ const styles = StyleSheet.create({
   },
   listCocktails: {
     padding: 30,
-    // display: "flex",
-    // flexDirection: "row",
-    // overflow: "scroll",
-    // flexWrap: "wrap",
-    // justifyContent: "center",
+    backgroundColor: "white",
+  },
+  logout: {
+    borderStyle: "solid",
+    borderWidth: 1,
+    borderColor: "grey",
+    backgroundColor: "white",
+    padding: 10,
+    width: "100%",
+    textAlign: "center",
   },
 });
 
