@@ -41,7 +41,7 @@ const StockList = () => {
   };
 
   return (
-    <View style={{ minHeight: "100%" }}>
+    <View>
       <View style={styles.headerStock}>
         <Text>Votre stock</Text>
 
