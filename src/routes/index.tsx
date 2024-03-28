@@ -9,6 +9,7 @@ import Login from "../pages/Login";
 import { useContext } from "react";
 import { DatabaseContext } from "../context/DatabaseContext";
 import Cocktail from "../pages/Cocktail/Cocktail";
+import IngredientCocktailPage from "../pages/IngredientCocktailPage";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,10 @@ const Routes = () => {
             <Stack.Screen name="favorites" component={Favorites} />
             <Stack.Screen name="user" component={User} />
             <Stack.Screen name="cocktail" component={Cocktail} />
+            <Stack.Screen
+              name="ingredientwithcocktail"
+              component={IngredientCocktailPage}
+            />
           </>
         ) : (
           <Stack.Screen name="login" component={Login} />
