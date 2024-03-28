@@ -43,7 +43,11 @@ const Cocktail = ({
           }}
         >
           <ImageBackground
-            source={{ uri: cocktail.image }}
+            source={{
+              uri: cocktail.image
+                ? cocktail.image
+                : "https://firebasestorage.googleapis.com/v0/b/app-cocktails.appspot.com/o/cocktails%2Fnot_found.jpeg?alt=media&token=b3be89b1-3c70-4aed-bd3a-6bebd36a7c2c",
+            }}
             imageStyle={{ borderRadius: 16 }}
             style={{
               width: "100%",
@@ -61,7 +65,17 @@ const Cocktail = ({
           }}
         >
           {cocktail.ingredients.map((ingredient: IngredientType) => (
-            <Chip key={ingredient.id}>{ingredient.name}</Chip>
+            <Pressable
+              onPress={() => {
+                console.log(ingredient);
+
+                navigation.navigate("ingredientwithcocktail", {
+                  ingredient,
+                });
+              }}
+            >
+              <Chip key={ingredient.id}>{ingredient.name}</Chip>
+            </Pressable>
           ))}
         </View>
         <Text>{cocktail.description}</Text>
