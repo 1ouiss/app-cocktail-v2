@@ -8,7 +8,7 @@ import {
   TextInput,
 } from "react-native-paper";
 import * as React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { updateDoc } from "../../../database/set";
 import { auth } from "../../../firebase";
 import { useState, FC } from "react";
@@ -94,7 +94,7 @@ const Signup: FC<{
   };
 
   return (
-    <>
+    <View style={styles.logPage}>
       <TextInput
         style={styles.input}
         label="Email"
@@ -130,12 +130,14 @@ const Signup: FC<{
       {error && errorMessage.includes("mot de passe") && (
         <Text>Erreur: {errorMessage}</Text>
       )}
-      <Button mode="contained" onPress={handleSubmit}>
+      <Button style={styles.boutton} mode="contained" onPress={handleSubmit}>
         S'inscrire
       </Button>
       <Text variant="bodyMedium">
         Déjà un compte ?{" "}
-        <Text onPress={() => setIsSignup(false)}>Se connecter</Text>
+        <Text style={styles.cta} onPress={() => setIsSignup(false)}>
+          Se connecter
+        </Text>
       </Text>
       {loading && (
         <ActivityIndicator
@@ -144,15 +146,34 @@ const Signup: FC<{
           color={MD2Colors.red800}
         />
       )}
-    </>
+    </View>
   );
 };
 const styles = StyleSheet.create({
   input: {
-    width: 300,
+    width: "100%",
     height: 44,
     padding: 10,
     marginBottom: 10,
+  },
+  logPage: {
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    alignItems: "center",
+    minHeight: 650,
+    padding: 10,
+    marginBottom: 10,
+    gap: 10,
+  },
+  boutton: {
+    width: "100%",
+    height: 44,
+    marginBottom: 10,
+    borderRadius: 10,
+  },
+  cta: {
+    color: MD2Colors.blueA400,
   },
 });
 export default Signup;
