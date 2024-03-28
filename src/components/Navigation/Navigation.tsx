@@ -7,6 +7,7 @@ import {
   IconHeart,
   IconHome,
   IconNewSection,
+  IconShoppingCart,
   IconUser,
 } from "@tabler/icons-react-native";
 import { DatabaseContext } from "../../context/DatabaseContext";
@@ -43,7 +44,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigation }) => {
         />
       </Pressable>
       <Pressable onPress={() => navigation.navigate("stock")}>
-        <IconDatabase
+        <IconShoppingCart
           size={26}
           color={route.name === "stock" ? "#006FEE" : "black"}
         />

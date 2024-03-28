@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 import Navigation from "../Navigation";
 import { NavigationProp, useRoute } from "@react-navigation/native";
 import { Text } from "react-native-paper";
+import { useEffect } from "react";
 
 type PageLayoutProps = {
   children: JSX.Element;
@@ -10,11 +11,28 @@ type PageLayoutProps = {
 
 const PageLayout = ({ children, navigation }: PageLayoutProps) => {
   const route = useRoute();
+
   return (
     <View style={styles.container}>
       {route.name !== "login" && (
         <View style={styles.header}>
-          <Text variant="titleLarge">Cocktelligence</Text>
+          <Text variant="titleLarge">
+            {route.name === "home"
+              ? "Accueil"
+              : route.name === "stock"
+              ? "Mon stock"
+              : route.name === "new"
+              ? "Nouveau cocktail"
+              : route.name === "favorites"
+              ? "Favoris"
+              : route.name === "user"
+              ? "Profil"
+              : route.name === "cocktail"
+              ? "Cocktail"
+              : route.name === "ingredientwithcocktail"
+              ? "Cocktails avec cet ingrédient"
+              : "Mon cocktail facile"}
+          </Text>
         </View>
       )}
       <ScrollView

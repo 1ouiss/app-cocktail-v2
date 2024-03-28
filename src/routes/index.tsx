@@ -27,15 +27,32 @@ const Routes = () => {
       >
         {user ? (
           <>
-            <Stack.Screen name="home" component={Home} />
-            <Stack.Screen name="stock" component={Stock} />
-            <Stack.Screen name="new" component={New} />
-            <Stack.Screen name="favorites" component={Favorites} />
+            <Stack.Screen
+              name="home"
+              component={Home}
+              options={{ title: "Accueil" }}
+            />
+            <Stack.Screen
+              name="stock"
+              component={Stock}
+              options={{ title: "Mon stock" }}
+            />
+            <Stack.Screen
+              name="new"
+              component={New}
+              options={{ title: "Nouveau cocktail" }}
+            />
+            <Stack.Screen
+              name="favorites"
+              component={Favorites}
+              options={{ title: "Favoris" }}
+            />
             <Stack.Screen name="user" component={User} />
             <Stack.Screen name="cocktail" component={Cocktail} />
             <Stack.Screen
               name="ingredientwithcocktail"
               component={IngredientCocktailPage}
+              options={{ title: "Cocktails avec cet ingrédient" }}
             />
           </>
         ) : (
