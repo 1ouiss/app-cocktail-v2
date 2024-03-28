@@ -9,6 +9,7 @@ import { Button, Chip, Modal, Text, TextInput } from "react-native-paper";
 import { useContext, useEffect, useState } from "react";
 import { updateDoc } from "../../database/set";
 import { DatabaseContext } from "../../context/DatabaseContext";
+import { IconPlus } from "@tabler/icons-react-native";
 
 const New: React.FC<NavigationProps> = ({ navigation }) => {
   const { user, ingredients } = useContext(DatabaseContext);
@@ -93,6 +94,9 @@ const New: React.FC<NavigationProps> = ({ navigation }) => {
           padding: 10,
           height: "100%",
           minHeight: "100%",
+          flex: 1,
+          gap: 20,
+          flexDirection: "column",
         }}
       >
         <TextInput
@@ -111,13 +115,16 @@ const New: React.FC<NavigationProps> = ({ navigation }) => {
             setNewIngredient(e);
             handleAvailableIngredientsChange(e);
           }}
+          onSubmitEditing={() => {
+            handleCreateNewIngredient();
+          }}
         />
 
         {newIngredient && (
           <View
             style={{
               position: "absolute",
-              top: 115,
+              top: 135,
               left: 0,
               zIndex: 1000,
               margin: 10,
@@ -140,10 +147,11 @@ const New: React.FC<NavigationProps> = ({ navigation }) => {
                       style={{
                         flexDirection: "row",
                         justifyContent: "space-between",
-                        padding: 10,
+                        padding: 20,
                       }}
                     >
                       <Text>{ingredient.name}</Text>
+                      <IconPlus size={20} />
                     </View>
                   </Pressable>
                 ))
@@ -152,7 +160,7 @@ const New: React.FC<NavigationProps> = ({ navigation }) => {
                   style={{
                     flexDirection: "row",
                     justifyContent: "space-between",
-                    padding: 10,
+                    padding: 20,
                   }}
                 >
                   <Button
@@ -199,6 +207,8 @@ const New: React.FC<NavigationProps> = ({ navigation }) => {
           onChangeText={(e) => {
             setCocktail({ ...cocktail, description: e });
           }}
+          multiline
+          numberOfLines={4}
         />
 
         <Button

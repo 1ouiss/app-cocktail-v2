@@ -8,6 +8,7 @@ import {
 import { DatabaseContext } from "../../../context/DatabaseContext";
 import { Button, Chip, Text, TextInput } from "react-native-paper";
 import { updateDoc } from "../../../database/set";
+import { IconPlus } from "@tabler/icons-react-native";
 
 const StockAddInput = () => {
   const { user, ingredients } = useContext(DatabaseContext);
@@ -82,6 +83,9 @@ const StockAddInput = () => {
           width: "100%",
           zIndex: 10000,
         }}
+        onSubmitEditing={() => {
+          handleCreateNewIngredient();
+        }}
       />
 
       {newIngredient && (
@@ -91,7 +95,7 @@ const StockAddInput = () => {
             top: 48,
             left: 0,
             zIndex: 100000000,
-            margin: 10,
+            marginTop: 10,
             backgroundColor: "white",
             width: "100%",
           }}
@@ -111,10 +115,11 @@ const StockAddInput = () => {
                     style={{
                       flexDirection: "row",
                       justifyContent: "space-between",
-                      padding: 10,
+                      padding: 20,
                     }}
                   >
                     <Text>{ingredient.name}</Text>
+                    <IconPlus size={20} />
                   </View>
                 </Pressable>
               ))
@@ -123,7 +128,7 @@ const StockAddInput = () => {
                 style={{
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  padding: 10,
+                  padding: 20,
                 }}
               >
                 <Button
