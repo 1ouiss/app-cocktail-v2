@@ -9,7 +9,7 @@ import Login from "../pages/Login";
 import { useContext } from "react";
 import { DatabaseContext } from "../context/DatabaseContext";
 import Cocktail from "../pages/Cocktail/Cocktail";
-import IngredientCocktailPage from "../pages/IngredientCocktailPage/IngredientCocktailPage";
+import IngredientCocktailPage from "../pages/IngredientCocktailPage";
 
 const Stack = createNativeStackNavigator();
 
