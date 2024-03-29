@@ -18,13 +18,27 @@ const Cocktail = ({
   navigation: NavigationProp<any>;
 }) => {
   const { cocktail } = route.params as { cocktail: CocktailType };
+
+  const formatDescription = (description: string): string => {
+    const maxLength = 80;
+    if (description.length > maxLength) {
+      return description.slice(0, maxLength) + "...";
+    }
+    return description;
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Pressable onPress={() => navigation.goBack()}>
           <IconArrowLeft size={24} />
         </Pressable>
-        <Text variant="titleLarge">{cocktail.name}</Text>
+        <Text
+          style={{ overflow: "hidden", maxWidth: "80%" }}
+          variant="titleLarge"
+          numberOfLines={1}
+        >
+          {cocktail.name}
+        </Text>
       </View>
       <ScrollView
         style={{
@@ -71,6 +85,7 @@ const Cocktail = ({
             style={{
               display: "flex",
               flexDirection: "row",
+              flexWrap: "wrap",
               gap: 10,
             }}
           >

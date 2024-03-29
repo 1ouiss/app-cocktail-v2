@@ -39,9 +39,6 @@ const StockList = ({
 
   return (
     <View style={{ padding: 20 }}>
-      <View style={styles.headerStock}>
-        <Text style={{ fontSize: 25 }}>Votre stock</Text>
-      </View>
       <StockModal />
       {user?.stock.length === 0 && (
         <Text style={styles.text}>Votre stock est vide</Text>
@@ -54,7 +51,6 @@ const StockList = ({
           flexWrap: "wrap",
           margin: "auto",
           marginTop: 10,
-          // backgroundColor: "red",
         }}
       >
         {user?.stock.map((ingredient, index) => (

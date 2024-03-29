@@ -39,16 +39,26 @@ const StockAddInput = () => {
           stock: [...(user?.stock ?? []), ingredient],
         },
       });
+      setNewIngredient("");
     } catch (e) {
       console.log(e);
     }
   };
 
   const handleCreateNewIngredient = async () => {
+    const formattedName =
+      newIngredient.charAt(0).toUpperCase() +
+      newIngredient
+        .slice(1)
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trimEnd();
+
     const ingredientToCreate: IngredientType = {
-      id: newIngredient.toLocaleLowerCase().split(" ").join("_"),
-      name: newIngredient,
+      id: formattedName.toLowerCase().split(" ").join("_"),
+      name: formattedName,
     };
+
     try {
       await updateDoc({
         collectionId: "ingredients",
