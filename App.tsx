@@ -10,6 +10,7 @@ import { updateDoc } from "./src/database/set";
 import { getDbDocs } from "./src/database/read";
 import { DatabaseContextProvider } from "./src/context/DatabaseContext";
 import { theme } from "./src/theme/theme";
+import { LogBox } from "react-native";
 
 // export default function App() {
 //   const [selectedIngredient, setSelectedIngredient] = useState<Ingredients>([]);
@@ -81,6 +82,7 @@ import { theme } from "./src/theme/theme";
 //   );import { collection, getDocs } from "firebase/firestore";
 
 export default function App() {
+  LogBox.ignoreAllLogs(true);
   useEffect(() => {
     getCocktails();
   }, []);
