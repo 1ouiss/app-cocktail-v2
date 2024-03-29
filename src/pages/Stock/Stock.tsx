@@ -30,17 +30,16 @@ const Stock: React.FC<NavigationProps> = ({ navigation }) => {
     if (user) {
       const ingredientIds = user.stock.map((ingredient) => ingredient.id);
       const filteredCocktails = cocktails.filter((cocktail) => {
-        const cocktailsIngredientsIds = cocktail.ingredients.map(
+        const cocktailIngredientIds = cocktail.ingredients.map(
           (ingredient) => ingredient.id
         );
-        return ingredientIds.every((id) =>
-          cocktailsIngredientsIds.includes(id)
-        );
+        return cocktailIngredientIds.some((id) => ingredientIds.includes(id));
       });
 
       setAvailableCocktails(filteredCocktails);
     }
   }, [user, cocktails]);
+
   return (
     <PageLayout navigation={navigation}>
       <>

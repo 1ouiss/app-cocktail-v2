@@ -28,9 +28,18 @@ const New: React.FC<NavigationProps> = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   const handleAddCocktail = async () => {
+    const formattedName =
+      cocktail.name.charAt(0).toUpperCase() +
+      cocktail.name
+        .slice(1)
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trimEnd();
+
     const newCocktail = {
-      id: cocktail.name.toLocaleLowerCase().split(" ").join("_"),
+      id: formattedName.toLocaleLowerCase().split(" ").join("_"),
       ...cocktail,
+      name: formattedName,
       user: user?.id,
     };
 
@@ -70,9 +79,17 @@ const New: React.FC<NavigationProps> = ({ navigation }) => {
   };
 
   const handleCreateNewIngredient = async () => {
+    const formattedName =
+      newIngredient.charAt(0).toUpperCase() +
+      newIngredient
+        .slice(1)
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trimEnd();
+
     const ingredientToCreate: IngredientType = {
-      id: newIngredient.toLocaleLowerCase().split(" ").join("_"),
-      name: newIngredient,
+      id: formattedName.toLocaleLowerCase().split(" ").join("_"),
+      name: formattedName,
     };
     await updateDoc({
       collectionId: "ingredients",

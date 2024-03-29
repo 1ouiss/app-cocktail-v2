@@ -1,13 +1,13 @@
-import { Pressable, StyleSheet, View } from "react-native";
+import { Animated, Pressable, StyleSheet, View } from "react-native";
 import { NavigationProps } from "../../../types/types";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRoute } from "@react-navigation/native";
 import {
   IconDatabase,
   IconHeart,
   IconHome,
   IconNewSection,
-  IconShoppingCart,
+  IconBox,
   IconUser,
 } from "@tabler/icons-react-native";
 import { DatabaseContext } from "../../context/DatabaseContext";
@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
 const Navigation: React.FC<NavigationProps> = ({ navigation }) => {
   const route = useRoute();
   const { user } = useContext(DatabaseContext);
+
   return (
     <View style={styles.container}>
       <Pressable onPress={() => navigation.navigate("home")}>
@@ -44,7 +45,7 @@ const Navigation: React.FC<NavigationProps> = ({ navigation }) => {
         />
       </Pressable>
       <Pressable onPress={() => navigation.navigate("stock")}>
-        <IconShoppingCart
+        <IconBox
           size={26}
           color={route.name === "stock" ? "#006FEE" : "black"}
         />
@@ -55,42 +56,26 @@ const Navigation: React.FC<NavigationProps> = ({ navigation }) => {
           color={route.name === "new" ? "#006FEE" : "black"}
         />
       </Pressable>
-      <Pressable
-        onPress={() => navigation.navigate("favorites")}
-        style={{
-          position: "relative",
-        }}
-      >
+      <Pressable onPress={() => navigation.navigate("favorites")}>
         <IconHeart
           size={26}
+          fill={
+            route.name === "favorites" &&
+            (!user || !user.favorites || user.favorites.length === 0)
+              ? "none"
+              : route.name !== "favorites" &&
+                user &&
+                user.favorites &&
+                user.favorites.length > 0
+              ? "black"
+              : route.name === "favorites"
+              ? "#006FEE"
+              : "none"
+          }
           color={route.name === "favorites" ? "#006FEE" : "black"}
         />
-        {user?.favorites && user?.favorites.length > 0 && (
-          <View
-            style={{
-              position: "absolute",
-              top: -5,
-              right: -7,
-              backgroundColor: "red",
-              borderRadius: 50,
-              width: 15,
-              height: 15,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text
-              style={{
-                color: "white",
-                fontSize: 10,
-              }}
-            >
-              {user?.favorites.length}
-            </Text>
-          </View>
-        )}
       </Pressable>
+
       <Pressable onPress={() => navigation.navigate("user")}>
         <IconUser
           size={26}

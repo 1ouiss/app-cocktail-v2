@@ -9,7 +9,7 @@ import {
 } from "../../types/types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
-import { collection, doc, onSnapshot } from "firebase/firestore";
+import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 type ContextType = {
@@ -46,24 +46,20 @@ const DatabaseContextProvider: FC<ContextType> = ({ children }) => {
     const collectionIngredientsRef = collection(db, "ingredients");
     const collectionCocktailsRef = collection(db, "cocktails");
 
-    new Promise((resolve, reject) => {
-      onSnapshot(collectionIngredientsRef, (snapshot) => {
-        const ingredients: Ingredients = [];
-        snapshot.forEach((doc) => {
-          ingredients.push(doc.data() as IngredientType);
-        });
-        setIngredients(ingredients);
+    onSnapshot(collectionIngredientsRef, (snapshot) => {
+      const ingredients: Ingredients = [];
+      snapshot.forEach((doc) => {
+        ingredients.push(doc.data() as IngredientType);
       });
+      setIngredients(ingredients);
     });
 
-    new Promise((resolve, reject) => {
-      onSnapshot(collectionCocktailsRef, (snapshot) => {
-        const cocktails: Cocktails = [];
-        snapshot.forEach((doc) => {
-          cocktails.push(doc.data() as CocktailType);
-        });
-        setCocktails(cocktails);
+    onSnapshot(collectionCocktailsRef, (snapshot) => {
+      const cocktails: Cocktails = [];
+      snapshot.forEach((doc) => {
+        cocktails.push(doc.data() as CocktailType);
       });
+      setCocktails(cocktails);
     });
   };
 
@@ -72,15 +68,9 @@ const DatabaseContextProvider: FC<ContextType> = ({ children }) => {
       const value = await AsyncStorage.getItem("user");
       if (!value) setIsSigned(false);
       const docRef = doc(db, "users", value as string);
-      new Promise((resolve, reject) => {
-        onSnapshot(docRef, (doc) => {
-          if (doc.exists() === false) {
-            reject(false);
-            return false;
-          }
-          setUser && setUser(doc.data() as User);
-          resolve(doc.data() as User);
-        });
+      onSnapshot(docRef, (doc) => {
+        if (doc.exists() === false) return;
+        setUser && setUser(doc.data() as User);
       });
     } catch (e) {
       console.log(e);

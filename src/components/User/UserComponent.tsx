@@ -8,8 +8,9 @@ import {
   red100,
   redA100,
 } from "react-native-paper/lib/typescript/styles/themes/v2/colors";
+import { NavigationProp } from "@react-navigation/native";
 
-const UserComponent = () => {
+const UserComponent = ({ navigation }: { navigation: NavigationProp<any> }) => {
   const { user, setUser, setIsSigned, cocktails } = useContext(DatabaseContext);
 
   const removeValue = async () => {
@@ -50,12 +51,32 @@ const UserComponent = () => {
         <Text>Logout</Text>
       </Pressable>
       <View style={styles.listCocktails}>
-        <Text style={{ fontSize: 20 }}>Les Cocktails que vous avez créé :</Text>
+        <Text style={{ fontSize: 20, padding: 20 }}>
+          Les Cocktails que vous avez créé :
+        </Text>
         {filteredCocktails.length === 0 ? (
           <Text>Vous n'avez pas encore créé de cocktails.</Text>
         ) : (
           filteredCocktails.map((cocktail, index) => (
-            <CocktailCard key={index} cocktail={cocktail} />
+            <Pressable
+              onPress={() =>
+                navigation.navigate("cocktail", {
+                  cocktail,
+                })
+              }
+              key={cocktail.id}
+              style={{
+                width: "50%",
+              }}
+            >
+              <CocktailCard
+                cocktail={cocktail}
+                showDescription={false}
+                variantTitle="bodyLarge"
+                height={150}
+                isDeleted={true}
+              />
+            </Pressable>
           ))
         )}
       </View>
@@ -65,7 +86,6 @@ const UserComponent = () => {
 
 const styles = StyleSheet.create({
   userPage: {
-    // backgroundColor: "grey",
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
@@ -79,8 +99,10 @@ const styles = StyleSheet.create({
     color: "green",
   },
   listCocktails: {
-    padding: 30,
-    backgroundColor: "white",
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
   },
   logout: {
     borderStyle: "solid",

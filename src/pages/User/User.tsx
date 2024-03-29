@@ -8,7 +8,7 @@ const User: React.FC<NavigationProps> = ({ navigation }) => {
   return (
     <PageLayout navigation={navigation}>
       <>
-        <UserComponent />
+        <UserComponent navigation={navigation} />
       </>
     </PageLayout>
   );

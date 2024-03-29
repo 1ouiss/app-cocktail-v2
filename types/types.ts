@@ -14,6 +14,7 @@ type CocktailType = {
   ingredients: IngredientType[];
   user?: string;
   image?: string;
+  likes?: number;
 };
 
 type User = {
