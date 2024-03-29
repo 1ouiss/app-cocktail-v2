@@ -2,7 +2,7 @@
 
 <br />
 <div align="center">
-  <h3 align="center">Nest checkout</h3>
+  <h3 align="center">Mon cocktail facile</h3>
 
   <p align="center">A project carried out by
 <a href="https://github.com/1ouiss">Louis Bouet</a> and    <a href="https://github.com/martin-ctny">Martin Cantonny</a>. 
@@ -102,9 +102,9 @@ See the [open issues](https://github.com/1ouiss/app-cocktail-v2/issues) for a fu
 
 ## Contact
 
-Louis Bouet - [@Louis Bouet](https://www.linkedin.com/in/louis-bouet/) on linkedin - ls.bouet@gmail.com
+Louis Bouet - [@Louis Bouet](https://www.linkedin.com/in/louis-bouet/) on linkedin
 
-Martin Cantonny - [@Martin Cantonny](https://www.linkedin.com/in/martin-cantonny-089506228/) on linkedin - cantonny.martin16@gmail.com
+Martin Cantonny - [@Martin Cantonny](https://www.linkedin.com/in/martin-cantonny-089506228/) on linkedin
 
 Project Link: [Cocktail app](https://github.com/1ouiss/app-cocktail-v2/)
 
